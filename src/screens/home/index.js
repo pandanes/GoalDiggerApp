@@ -6,25 +6,63 @@ export default class Home extends Component {
       
     return (
       <View style = {styles.container}>
-        <Text style = {styles.titleText}>TODAY STATS</Text>
-        <View style = {styles.counterContainer}>
-            <View style = {styles.counterRectangle}>
-                <Text style = {styles.counterNumber}>0</Text>
-                <Text style = {styles.counterText}>GOALS DONE</Text>
+        <ScrollView showsVerticalScrollIndicator = {false}>
+            <Text style = {styles.titleText}>TODAY STATS</Text>
+            <View style = {styles.counterContainer}>
+                <View style = {styles.counterRectangle}>
+                    <Text style = {styles.counterNumber}>0</Text>
+                    <Text style = {styles.counterText}>GOALS DONE</Text>
+                </View>
+                <View style = {styles.counterRectangle}>
+                    <Text style = {styles.counterNumber}>0</Text>
+                    <Text style = {styles.counterText}>REWARDS RECEIVED</Text>
+                </View>
             </View>
-            <View style = {styles.counterRectangle}>
-                <Text style = {styles.counterNumber}>0</Text>
-                <Text style = {styles.counterText}>REWARDS RECEIVED</Text>
-            </View>
-        </View>
-        <Text style = {styles.titleText}>TODAY GOALS</Text>
-        <ScrollView>
+            <Text style = {styles.titleText}>TODAY GOALS</Text>
             <View style = {styles.goalCard}>
                 <View style = {styles.goalDetailWrapper}>
                     <Text style = {styles.goalTitleText}>Learn Javascript</Text>
                     <Text style = {styles.goalBriefText}>Help me burn out bright</Text>
                 </View>
-                <View style = {styles.iconCheck}><Text>@</Text></View>
+                <View style = {styles.checkIconWrapper}>
+                    <Image style = {styles.checkIcon} source = {require('../../assets/icons/checked-inactive.png')} /> 
+                </View>
+            </View>
+            <View style = {styles.goalCard}>
+                <View style = {styles.goalDetailWrapper}>
+                    <Text style = {styles.goalTitleText}>Learn Javascript</Text>
+                    <Text style = {styles.goalBriefText}>Help me burn out bright</Text>
+                </View>
+                <View style = {styles.checkIconWrapper}>
+                    <Image style = {styles.checkIcon} source = {require('../../assets/icons/checked-inactive.png')} /> 
+                </View>
+            </View>
+            <View style = {styles.goalCard}>
+                <View style = {styles.goalDetailWrapper}>
+                    <Text style = {styles.goalTitleText}>Learn Javascript</Text>
+                    <Text style = {styles.goalBriefText}>Help me burn out bright</Text>
+                </View>
+                <View style = {styles.checkIconWrapper}>
+                    <Image style = {styles.checkIcon} source = {require('../../assets/icons/checked-inactive.png')} /> 
+                </View>
+            </View>
+            <View style = {styles.goalCard}>
+                <View style = {styles.goalDetailWrapper}>
+                    <Text style = {styles.goalTitleText}>Learn Javascript</Text>
+                    <Text style = {styles.goalBriefText}>Help me burn out bright</Text>
+                </View>
+                <View style = {styles.checkIconWrapper}>
+                    <Image style = {styles.checkIcon} source = {require('../../assets/icons/checked-inactive.png')} /> 
+                </View>
+            </View>
+            <View style = {styles.goalCard}>
+                <View style = {styles.goalDetailWrapper}>
+                    <Text style = {styles.goalTitleText}>Learn Javascript</Text>
+                    <Text style = {styles.goalBriefText}>Help me burn out bright</Text>
+                </View>
+                <View style = {styles.checkIconWrapper}>
+                    <Image style = {styles.checkIcon} source = {require('../../assets/icons/checked-inactive.png')} /> 
+                </View>
             </View>
         </ScrollView>
       </View>
@@ -83,7 +121,7 @@ const styles = StyleSheet.create({
         color: 'rgba(74,144,226,1)',
     },
     goalCard: {
-        marginVertical: 16,
+        marginTop: 16,
         paddingRight: 20,
         flex: 1,
         flexDirection: 'row',
@@ -117,10 +155,14 @@ const styles = StyleSheet.create({
         lineHeight: 19,
         marginTop: 4
     },
-    iconCheck: {
+    checkIconWrapper: {
         paddingVertical: 16,
         flex: 2,
         justifyContent: 'center'
+    },
+    checkIcon: {
+        width: 30,
+        height: 32
     }
 
 

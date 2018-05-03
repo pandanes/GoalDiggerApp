@@ -138,10 +138,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
-    statsNumberContainer: {
-        flexDirection: 'row',
-        alignItems: 'flex-end'
-    },
     barContainer: {
         flexDirection: 'row'
     },
@@ -158,6 +154,11 @@ const styles = StyleSheet.create({
         borderRadius: 7,
         backgroundColor: 'rgba(216,216,216,1)',
         marginRight: 8
+    },
+    statsNumberContainer: {
+        flexDirection: 'row',
+        //justifyContent: 'baseline',
+        alignItems: 'flex-end'
     },
     numberDoneText: {
         fontFamily: 'OpensSans',

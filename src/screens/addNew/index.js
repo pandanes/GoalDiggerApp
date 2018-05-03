@@ -23,6 +23,26 @@ export default class AddNew extends Component {
                     <View style = {styles.dayCircle}><Text style = {styles.dayCircleText}>SAT</Text></View>
                     <View style = {styles.dayCircle}><Text style = {styles.dayCircleText}>SUN</Text></View>
                 </View>
+                <Text style = {styles.titleText}>Set Rewards</Text>
+                <View style = {styles.rewardsFormContainer}>
+                    <Text style = {styles.titleText}>Immediate Rewards:</Text>
+                    <TextInput
+                    style = {styles.rewardsTextInput}
+                    placeholder = 'e.g. Browse the internet for 10 mins'
+                    placeholderTextColor = 'rgba(196,196,196,1)'
+                    underlineColorAndroid = 'transparent'
+                    />
+                    <Text style = {styles.titleText}>Completed Rewards:</Text>
+                    <TextInput
+                    style = {styles.rewardsTextInput}
+                    placeholder = 'e.g. Treat myself two scoops of gelato'
+                    placeholderTextColor = 'rgba(196,196,196,1)'
+                    underlineColorAndroid = 'transparent'
+                    />
+                </View>
+                <TouchableOpacity style = {styles.buttonSave}>
+                    <Text style = {styles.buttonSaveText}>SAVE</Text>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -54,6 +74,7 @@ const styles = StyleSheet.create({
         elevation: 2    
     },
     dayOptionContainer: {
+        marginBottom: 24,
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingTop: 12
@@ -82,6 +103,35 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: 'rgba(255,255,255,1)',
         letterSpacing: 1
+    },
+    rewardsFormContainer: {
+        marginTop: 12,
+        marginBottom: 20,
+        paddingTop: 20,
+        paddingHorizontal: 16,
+        backgroundColor: 'rgba(255,255,255,1)',
+        borderRadius: 4,
+        elevation: 2
+    },
+    rewardsTextInput: {
+        marginBottom: 20,
+        padding: 12,
+        borderBottomWidth: 1,
+        borderBottomColor: 'rgba(216,216,216,1)'  
+    },
+    buttonSave: {
+        paddingVertical: 12,
+        backgroundColor: 'rgba(44,110,183,1)',
+        borderRadius: 5
+    },
+    buttonSaveText: {
+        fontFamily: 'OpenSans',
+        fontWeight: 'bold',
+        fontSize: 18,
+        color: 'rgba(255,255,255,1.0)',
+        letterSpacing: 1.28,
+        textAlign: 'center',
+
     }
 
 })

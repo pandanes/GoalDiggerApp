@@ -16,17 +16,18 @@ const AppNavigator = StackNavigator({
      */
     home: {
         screen: Home,
-        headerTitle: 'Dashboard',
     },
     list: {
         screen: TabNavigator,
-        headerTitle: 'List'
         },
     addNew: {
         screen: AddNew,
     },
     detail: {
-        screen: Detail
+        screen: Detail,
+        navigationOptions: {
+            header: null,
+          },
     }
 },
   {initialRouteName: 'detail'}

@@ -5,44 +5,44 @@ export default class Detail extends Component {
     render() {
         return (
             <View style = {styles.container}>
-                <Text style = {styles.titleText}>detail Goal Name:</Text>
-                <TextInput
-                style = {styles.textInputStyle}
-                placeholder = 'Enter the goal name'
-                placeholderTextColor = 'rgba(196,196,196,1)'
-                underlineColorAndroid = 'transparent'
-                />
-                <Text style = {styles.titleText}>Frequency:</Text>
-                <View style = {styles.dayOptionContainer}>
-                    <View style = {styles.dayCircle}><Text style = {styles.dayCircleText}>E</Text></View>
-                    <View style = {styles.dayCircle}><Text style = {styles.dayCircleText}>MO</Text></View>
-                    <View style = {styles.dayCircle}><Text style = {styles.dayCircleText}>TU</Text></View>
+                <Text style = {styles.detailLabelText}>Goal Name:</Text>
+                <View style = {styles.detailBg}>
+                    <Text style = {styles.titleText}>Save the world</Text>
+                </View>
+                <Text style = {styles.detailLabelText}>Frequency:</Text>
+                <View style = {styles.selectedDayContainer}>
                     <View style = {[styles.dayCircle, styles.dayCircleSelected]}><Text style = {styles.dayCircleTextSelected}>WED</Text></View>
-                    <View style = {styles.dayCircle}><Text style = {styles.dayCircleText}>TH</Text></View>
                     <View style = {[styles.dayCircle, styles.dayCircleSelected]}><Text style = {styles.dayCircleTextSelected}>FRI</Text></View>
-                    <View style = {styles.dayCircle}><Text style = {styles.dayCircleText}>SAT</Text></View>
-                    <View style = {styles.dayCircle}><Text style = {styles.dayCircleText}>SUN</Text></View>
                 </View>
-                <Text style = {styles.titleText}>Set Rewards</Text>
+                <Text style = {styles.detailLabelText}>Rewards</Text>
                 <View style = {styles.rewardsFormContainer}>
-                    <Text style = {styles.titleText}>Immediate Rewards:</Text>
-                    <TextInput
-                    style = {styles.rewardsTextInput}
-                    placeholder = 'e.g. Browse the internet for 10 mins'
-                    placeholderTextColor = 'rgba(196,196,196,1)'
-                    underlineColorAndroid = 'transparent'
-                    />
-                    <Text style = {styles.titleText}>Completed Rewards:</Text>
-                    <TextInput
-                    style = {styles.rewardsTextInput}
-                    placeholder = 'e.g. Treat myself two scoops of gelato'
-                    placeholderTextColor = 'rgba(196,196,196,1)'
-                    underlineColorAndroid = 'transparent'
-                    />
+                    <Text style = {styles.detailLabelText}>Immediate:</Text>
+                    <View style = {styles.rewardsBg}>
+                        <Text style = {styles.titleText}>Browse the internet for 10 mins</Text>
+                    </View>
+                    <Text style = {styles.detailLabelText}>Completed:</Text>
+                    <View style = {styles.rewardsBg}>
+                        <Text style = {styles.titleText}>Treat myself two scoops of gelato</Text>
+                    </View>
                 </View>
-                <TouchableOpacity style = {styles.buttonSave}>
-                    <Text style = {styles.buttonSaveText}>SAVE</Text>
-                </TouchableOpacity>
+                <Text style = {styles.titleText}>Stats:</Text>
+                <View style = {styles.detailBg}>
+                    <View style = {styles.statsContainer}>
+                        <View style = {styles.barContainer}>
+                            <View style = {styles.barDone}></View>
+                            <View style = {styles.barDone}></View>
+                            <View style = {styles.barUndone}></View>
+                            <View style = {styles.barUndone}></View>
+                            <View style = {styles.barUndone}></View>
+                            <View style = {styles.barUndone}></View>
+                        </View>
+                        <View style = {styles.statsNumberContainer}>
+                            <Text style = {styles.numberDoneText}>2 </Text>
+                            <Text style = {styles.numberUndoneText}>/ 5</Text>
+                        </View>
+                    </View>
+                </View>
+                
             </View>
         );
     }
@@ -57,6 +57,23 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         paddingTop: 24
     },
+    detailLabelText: {
+        fontFamily: 'OpenSans',
+        fontWeight: 'bold',
+        fontSize: 18,
+        color: 'rgba(149,149,149,0.8)',
+        letterSpacing: 1.28,
+        lineHeight: 19
+    },
+    detailBg: {
+        marginTop: 12,
+        marginBottom: 28,
+        paddingVertical: 20,
+        paddingHorizontal: 16,
+        backgroundColor: 'rgba(255,255,255,1)',
+        borderRadius: 4,
+        elevation: 2
+    },
     titleText: {
         fontFamily: 'OpenSans',
         fontWeight: 'bold',
@@ -65,34 +82,19 @@ const styles = StyleSheet.create({
         letterSpacing: 1.28,
         lineHeight: 19
     },
-    textInputStyle: {
-        marginTop: 12,
-        marginBottom: 24,
-        padding: 16,
-        backgroundColor: 'rgba(255,255,255,1.0)',
-        borderRadius: 4,
-        elevation: 2    
-    },
-    dayOptionContainer: {
+    selectedDayContainer: {
         marginBottom: 24,
         flexDirection: 'row',
-        justifyContent: 'space-between',
         paddingTop: 12
     },
     dayCircle: {
         width: 45,
         height: 45,
+        marginRight: 5,
         backgroundColor: 'rgba(196,196,196,0.32)',
         borderRadius: 45/2,
         justifyContent: 'center',
         alignItems: 'center'
-    },
-    dayCircleText: {
-        fontFamily: 'OpensSans',
-        fontWeight: 'bold',
-        fontSize: 16,
-        color: 'rgba(81,81,81,0.8)',
-        letterSpacing: 1
     },
     dayCircleSelected: {
         backgroundColor: 'rgba(74,144,226,1)'
@@ -113,9 +115,9 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         elevation: 2
     },
-    rewardsTextInput: {
+    rewardsBg: {
         marginBottom: 20,
-        padding: 12,
+        padding: 14,
         borderBottomWidth: 1,
         borderBottomColor: 'rgba(216,216,216,1)'  
     },
@@ -131,7 +133,43 @@ const styles = StyleSheet.create({
         color: 'rgba(255,255,255,1.0)',
         letterSpacing: 1.28,
         textAlign: 'center',
-
+    },
+    statsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    statsNumberContainer: {
+        flexDirection: 'row',
+        alignItems: 'flex-end'
+    },
+    barContainer: {
+        flexDirection: 'row'
+    },
+    barDone: {
+        width: 9,
+        height: 55,
+        borderRadius: 7,
+        backgroundColor: 'rgba(74,144,226,1)',
+        marginRight: 8
+    },
+    barUndone: {
+        width: 9,
+        height: 55,
+        borderRadius: 7,
+        backgroundColor: 'rgba(216,216,216,1)',
+        marginRight: 8
+    },
+    numberDoneText: {
+        fontFamily: 'OpensSans',
+        fontWeight: '600',
+        fontSize: 28,
+        color: 'rgba(81,81,81,1)'
+    },
+    numberUndoneText: {
+        fontFamily: 'OpensSans',
+        fontWeight: '600',
+        fontSize: 24,
+        color: 'rgba(81,81,81,1)'
     }
 
 })

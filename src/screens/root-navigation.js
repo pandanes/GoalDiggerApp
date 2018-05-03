@@ -3,6 +3,7 @@ import { StackNavigator } from 'react-navigation'
 
 import Home from './home'
 import TabNavigator from './list'
+import AddNew from './addNew'
 //import TabNavigator from './home'
 
 const AppNavigator = StackNavigator({
@@ -21,11 +22,11 @@ const AppNavigator = StackNavigator({
         screen: TabNavigator,
         headerTitle: 'List'
         },
-     /* list: {
-      screen: List,
-    }  */
+    AddNew: {
+        screen: AddNew,
+    }
 },
-  {initialRouteName: 'list'}
+  {initialRouteName: 'AddNew'}
 )
 
 export default AppNavigator

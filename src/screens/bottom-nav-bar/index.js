@@ -13,6 +13,7 @@ import {
 import Home from '../home'
 import AddNew from '../add-new'
 import Detail from '../detail'
+import TabNavigator from '../list'
 
 export default class BottomNav extends Component {
         _renderTabIndicator() {
@@ -29,14 +30,14 @@ export default class BottomNav extends Component {
                 iconSource: require('../../assets/icons/nav-bar-list-inactive.png'),
                 selectedIconSource: require('../../assets/icons/nav-bar-list.png')
         }];
-        return <PagerTabIndicator tabs={tabs} iconStyle={{ width: 24, height: 24}} />;
+        return <PagerTabIndicator tabs={tabs} iconStyle={{ width: 24, height: 24}} selectedIconStyle={{ width: 28, height: 28}} />;
     }
     render() {
         return (
             <View style={{flex:1}}>
                 
                 <IndicatorViewPager
-				style={{flex:1, paddingTop:20, backgroundColor:'orange'}}
+				style={{flex:1, paddingTop:20}}
                 indicator={this._renderTabIndicator()}>
 
                     <View>
@@ -54,7 +55,7 @@ export default class BottomNav extends Component {
 
                     </View>
                     <View>
-                        <Detail />
+                        <TabNavigator />
                     </View>
                 </IndicatorViewPager>
             </View>

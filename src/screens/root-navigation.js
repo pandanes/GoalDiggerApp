@@ -30,7 +30,7 @@ const AppNavigator = StackNavigator({
           },
     }
 },
-  {initialRouteName: 'detail'}
+  {initialRouteName: 'home'}
 )
 
 export default AppNavigator

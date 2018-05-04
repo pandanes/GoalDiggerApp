@@ -5,6 +5,7 @@ import Home from './home'
 import TabNavigator from './list'
 import AddNew from './add-new'
 import Detail from './detail'
+import BottomNav from './bottom-nav-bar'
 
 const AppNavigator = StackNavigator({
 /*     login: {
@@ -27,10 +28,16 @@ const AppNavigator = StackNavigator({
         screen: Detail,
         navigationOptions: {
             header: null,
-          },
+          }
+    },
+    bottomNav: {
+        screen: BottomNav,
+        navigationOptions: {
+            header: null
+        }
     }
 },
-  {initialRouteName: 'home'}
+  {initialRouteName: 'bottomNav'}
 )
 
 export default AppNavigator

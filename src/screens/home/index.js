@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
 		height: 56,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: 'rgba(60,145,242,1)'
+    backgroundColor: 'rgba(60,145,242,1)'
 	},
 	headerText: {
 		fontFamily: 'OpenSans',

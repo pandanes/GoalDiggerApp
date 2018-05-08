@@ -6,6 +6,7 @@ import Home from '../home'
 import AddGoal from '../add-goal'
 import List from '../list'
 import Detail from '../detail'
+import GoalsList from '../goals-list'
 
 export default class BottomNav extends Component {
   _renderTabIndicator() {
@@ -30,7 +31,7 @@ export default class BottomNav extends Component {
     return (
       <View style={{flex:1}}>        
         <IndicatorViewPager
-        style={{flex:1, paddingTop:20, backgroundColor:'tomato'}}
+        style={{flex:1}}
         indicator={this._renderTabIndicator()}>
           <View>
               <Home />
@@ -39,7 +40,7 @@ export default class BottomNav extends Component {
               <AddGoal />
           </View>
           <View>
-              <List />
+              <GoalsList />
           </View>
         </IndicatorViewPager>
       </View>

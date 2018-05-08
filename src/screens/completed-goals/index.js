@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Text, Image, View, ScrollView, FlatList, Dimensions, StyleSheet} from 'react-native';
-import styles from './shared-style'
+import styles from '../shared-style'
 
 export default class CompletedGoals extends Component {
   render() {
 	const goals= [
-		{title: 'Learn Javascript', brief: 'Lorem ipsum dolor sit amet'},
+		{title: 'Completed', brief: 'Lorem ipsum dolor sit amet'},
 		{title: 'Save the world', brief: 'Lorem ipsum dolor sit amet'},
 		{title: 'Learn to fly', brief: 'Help me burn out bright'},
 		{title: 'Be a minority', brief: 'You are on your own side'},
@@ -14,9 +14,6 @@ export default class CompletedGoals extends Component {
 
 	return (
 		<View style = {{flex:1}}>
-			<View style = {styles.header}>
-				<Text style = {styles.headerText}>Dashboard</Text>
-			</View>
 			<View style = {styles.container}>
 				<ScrollView showsVerticalScrollIndicator = {false}>
 					<FlatList

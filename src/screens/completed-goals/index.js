@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, Image, View, ScrollView, FlatList, Dimensions, StyleSheet} from 'react-native';
 import styles from './shared-style'
 
-export default class OngoingGoals extends Component {
+export default class CompletedGoals extends Component {
   render() {
 	const goals= [
 		{title: 'Learn Javascript', brief: 'Lorem ipsum dolor sit amet'},

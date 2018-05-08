@@ -4,7 +4,8 @@ export const ADD_GOAL_ACTIONS = Object.freeze({
 	SAVE_GOAL_BRIEF: '../../screens/saveGoalBrief',
 	SAVE_FREQUENCY: '../../screens/saveFrequency',
 	SAVE_IMMEDIATE_REWARDS: '../../screens/saveImmediateRewards',
-	SAVE_COMPLETED_REWARDS: '../../screens/saveCompletedRewards'
+	SAVE_COMPLETED_REWARDS: '../../screens/saveCompletedRewards',
+	CHANGE_DAY: '../../screens/changeDay',
 })
 
 //ACTIONS
@@ -13,7 +14,8 @@ export const addGoalActions = Object.freeze({
 	saveGoalBrief: (text) => ({ type: ADD_GOAL_ACTIONS.SAVE_GOAL_BRIEF, text}),
 	saveFrequency: (value) => ({ type: ADD_GOAL_ACTIONS.SAVE_FREQUENCY, value}),
 	saveImmediateRewards: (text) => ({ type: ADD_GOAL_ACTIONS.SAVE_IMMEDIATE_REWARDS, text}),
-	saveCompletedRewards: (text) => ({ type: ADD_GOAL_ACTIONS.SAVE_COMPLETED_REWARDS, text})
+	saveCompletedRewards: (text) => ({ type: ADD_GOAL_ACTIONS.SAVE_COMPLETED_REWARDS, text}),
+	changeDay: (value) => ({ type: ADD_GOAL_ACTIONS.CHANGE_DAY, value}),
 })
 
 //REDUCER
@@ -31,7 +33,8 @@ const initState = {
 	goalBrief: '',
 	frequency: '',
 	immediateRewards: '',
-	completedRewards: ''
+	completedRewards: '',
+	everyday: false,
 }
 
 const reducer = (state = initState, action) => {
@@ -46,6 +49,9 @@ const reducer = (state = initState, action) => {
 			return {...state, immediateRewards: action.text}
 		case ADD_GOAL_ACTIONS.SAVE_COMPLETED_REWARDS:
 			return {...state, completedRewards: action.text}
+		case ADD_GOAL_ACTIONS.CHANGE_DAY:
+			//return {...state, everyDay: action.value}
+			return {...state, [action.field]: action.value}
 		default:
 			return state
  }

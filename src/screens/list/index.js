@@ -85,7 +85,6 @@ class Ongoing extends Component {
     );
   }
 }
-
 class Completed extends React.Component {
   render() {
     return (

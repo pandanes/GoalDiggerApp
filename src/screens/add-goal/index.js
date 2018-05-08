@@ -13,6 +13,8 @@ const mapDispatchToProps = dispatch  => ({
 	saveFrequency: value => dispatch(addGoalActions.saveFrequency(value)),
 	saveImmediateRewards: text => dispatch(addGoalActions.saveImmediateRewards(text)),
 	saveCompletedRewards: text => dispatch(addGoalActions.saveCompletedRewards(text)),
+	changeDays: (field, value) => dispatch(addGoalActions.changeDay(field, value))
+	//changeDays: (value) => dispatch(addGoalActions.changeDay(value))
 })
 
 //SAVE TO ASYNC STORAGE
@@ -21,6 +23,8 @@ handleAddGoal = (goalName, goalBrief, frequency, immediateRewards, completedRewa
 	console.log('goal name:', goalName)
 	AsyncStorage.setItem('data', JSON.stringify(data))
 }
+
+handleDays = (field, value) => changeDays(field, value)
 
 const AddGoal = ({saveGoalName,
 	saveGoalBrief,
@@ -31,21 +35,26 @@ const AddGoal = ({saveGoalName,
 	goalBrief,
 	frequency,
 	immediateRewards,
-	completedRewards}) => {
-	console.log('check state ==== ', goalBrief)
+	completedRewards,
+	everyday,
+	changeDays,
+	handleDays
+	}) => {
+	console.log('check day ==== ', goalBrief)
+	console.log('check changeday ==== ', everyday)	
 	
 	var d = new Date();
-var weekday = new Array(7);
-weekday[0] =  "Sunday";
-weekday[1] = "Monday";
-weekday[2] = "Tuesday";
-weekday[3] = "Wednesday";
-weekday[4] = "Thursday";
-weekday[5] = "Friday";
-weekday[6] = "Saturday";
+	var weekday = new Array(7);
+	weekday[0] = "Sunday";
+	weekday[1] = "Monday";
+	weekday[2] = "Tuesday";
+	weekday[3] = "Wednesday";
+	weekday[4] = "Thursday";
+	weekday[5] = "Friday";
+	weekday[6] = "Saturday";
 
-var n = weekday[d.getDay()];
-console.log(n);
+	var n = weekday[d.getDay()];
+//	console.log(n);
 
 		return (
 	<View style = {styles.container}>
@@ -70,14 +79,47 @@ console.log(n);
 			/>
 			<Text style = {styles.titleText}>Frequency:</Text>
 			<View style = {styles.dayOptionContainer}>
-				<TouchableOpacity style = {styles.dayCircle}><Text style = {styles.dayCircleText}>E</Text></TouchableOpacity>
-				<TouchableOpacity style = {styles.dayCircle}><Text style = {styles.dayCircleText}>MO</Text></TouchableOpacity>
-				<TouchableOpacity style = {styles.dayCircle}><Text style = {styles.dayCircleText}>TU</Text></TouchableOpacity>
-				<TouchableOpacity style = {[styles.dayCircle, styles.dayCircleSelected]}><Text style = {styles.dayCircleTextSelected}>WED</Text></TouchableOpacity>
-				<TouchableOpacity style = {styles.dayCircle}><Text style = {styles.dayCircleText}>TH</Text></TouchableOpacity>
-				<TouchableOpacity style = {[styles.dayCircle, styles.dayCircleSelected]}><Text style = {styles.dayCircleTextSelected}>FRI</Text></TouchableOpacity>
-				<TouchableOpacity style = {styles.dayCircle}><Text style = {styles.dayCircleText}>SAT</Text></TouchableOpacity>
-				<TouchableOpacity style = {styles.dayCircle}><Text style = {styles.dayCircleText}>SUN</Text></TouchableOpacity>
+				<TouchableOpacity
+				//onPress = {() => changeDays(!everyDay)}
+				onPress = {() => changeDays('everyday', !everyday)}
+				style = {everyday ? styles.dayCircle : [styles.dayCircle, styles.dayCircleSelected]}>
+					<Text style = {styles.dayCircleText}>E</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+				onPress = {value => handleDay('monday', value)}
+				style = {styles.dayCircle}>
+					<Text style = {styles.dayCircleText}>MO</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+				onPress = {value => handleDay('tuesday', value)}
+				style = {styles.dayCircle}>
+					<Text style = {styles.dayCircleText}>TU</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+				onPress = {value => handleDay('wednesday', value)}
+				style = {[styles.dayCircle, styles.dayCircleSelected]}>
+					<Text style = {styles.dayCircleTextSelected}>WED</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+				onPress = {value => handleDay('thursday', value)}
+				style = {styles.dayCircle}>
+					<Text style = {styles.dayCircleText}>TH</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+				onPress = {value => handleDay('friday', value)}
+				style = {[styles.dayCircle, styles.dayCircleSelected]}>
+					<Text style = {styles.dayCircleTextSelected}>FRI</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+				onPress = {value => handleDay('saturday', value)}
+				style = {styles.dayCircle}>
+					<Text style = {styles.dayCircleText}>SAT</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+				onPress = {value => handleDay('sunday', value)}
+				style = {styles.dayCircle}>
+					<Text style = {styles.dayCircleText}>SUN</Text>
+				</TouchableOpacity>
 			</View>
 			<Text style = {styles.titleText}>Set Rewards</Text>
 			<View style = {styles.rewardsFormContainer}>

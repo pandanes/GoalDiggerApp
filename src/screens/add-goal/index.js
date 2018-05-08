@@ -1,52 +1,115 @@
 import React, { Component } from 'react';
-import { Text, TextInput, Image, TouchableOpacity, View, StyleSheet, ScrollView, Dimensions } from 'react-native';
+import { Text, TextInput, Image, TouchableOpacity, View, StyleSheet, ScrollView, Dimensions, AsyncStorage } from 'react-native';
+import { connect } from 'react-redux'
+import { addGoalActions } from '../../redux/modules/add-goal';
 
-export default class AddGoal extends Component {
-	render() {
+//GET STATE
+const mapStateToProps = state => state.addGoal
+
+//DISPATCH ACTIONS
+const mapDispatchToProps = dispatch  => ({
+	saveGoalName: text => dispatch(addGoalActions.saveGoalName(text)),
+	saveGoalBrief: text => dispatch(addGoalActions.saveGoalBrief(text)),
+	saveFrequency: value => dispatch(addGoalActions.saveFrequency(value)),
+	saveImmediateRewards: text => dispatch(addGoalActions.saveImmediateRewards(text)),
+	saveCompletedRewards: text => dispatch(addGoalActions.saveCompletedRewards(text)),
+})
+
+//SAVE TO ASYNC STORAGE
+handleAddGoal = (goalName, goalBrief, frequency, immediateRewards, completedRewards) => {
+	const data = {goalName, goalBrief, frequency, immediateRewards, completedRewards}
+	console.log('goal name:', goalName)
+	AsyncStorage.setItem('data', JSON.stringify(data))
+}
+
+const AddGoal = ({saveGoalName,
+	saveGoalBrief,
+	saveFrequency,
+	saveImmediateRewards,
+	saveCompletedRewards,
+	goalName,
+	goalBrief,
+	frequency,
+	immediateRewards,
+	completedRewards}) => {
+	console.log('check state ==== ', goalBrief)
+	
+	var d = new Date();
+var weekday = new Array(7);
+weekday[0] =  "Sunday";
+weekday[1] = "Monday";
+weekday[2] = "Tuesday";
+weekday[3] = "Wednesday";
+weekday[4] = "Thursday";
+weekday[5] = "Friday";
+weekday[6] = "Saturday";
+
+var n = weekday[d.getDay()];
+console.log(n);
+
 		return (
-			<View style = {styles.container}>
-				<Text style = {styles.titleText}>Goal Name:</Text>
+	<View style = {styles.container}>
+		<ScrollView showsVerticalScrollIndicator = {false}>
+			<Text style = {styles.titleText}>Goal Name:</Text>
+			<TextInput
+			style = {styles.textInputStyle}
+			placeholder = 'Enter the goal name'
+			placeholderTextColor = 'rgba(196,196,196,1)'
+			underlineColorAndroid = 'transparent'
+			onChangeText = {text => saveGoalName(text)}
+			value = {goalName}
+			/>
+			<Text style = {styles.titleText}>Goal Brief:</Text>
+			<TextInput
+			style = {styles.textInputStyle}
+			placeholder = 'Enter the goal brief'
+			placeholderTextColor = 'rgba(196,196,196,1)'
+			underlineColorAndroid = 'transparent'
+			onChangeText = {text => saveGoalBrief(text)}
+			value = {goalBrief}
+			/>
+			<Text style = {styles.titleText}>Frequency:</Text>
+			<View style = {styles.dayOptionContainer}>
+				<TouchableOpacity style = {styles.dayCircle}><Text style = {styles.dayCircleText}>E</Text></TouchableOpacity>
+				<TouchableOpacity style = {styles.dayCircle}><Text style = {styles.dayCircleText}>MO</Text></TouchableOpacity>
+				<TouchableOpacity style = {styles.dayCircle}><Text style = {styles.dayCircleText}>TU</Text></TouchableOpacity>
+				<TouchableOpacity style = {[styles.dayCircle, styles.dayCircleSelected]}><Text style = {styles.dayCircleTextSelected}>WED</Text></TouchableOpacity>
+				<TouchableOpacity style = {styles.dayCircle}><Text style = {styles.dayCircleText}>TH</Text></TouchableOpacity>
+				<TouchableOpacity style = {[styles.dayCircle, styles.dayCircleSelected]}><Text style = {styles.dayCircleTextSelected}>FRI</Text></TouchableOpacity>
+				<TouchableOpacity style = {styles.dayCircle}><Text style = {styles.dayCircleText}>SAT</Text></TouchableOpacity>
+				<TouchableOpacity style = {styles.dayCircle}><Text style = {styles.dayCircleText}>SUN</Text></TouchableOpacity>
+			</View>
+			<Text style = {styles.titleText}>Set Rewards</Text>
+			<View style = {styles.rewardsFormContainer}>
+				<Text style = {styles.titleText}>Immediate Reward:</Text>
 				<TextInput
-				style = {styles.textInputStyle}
-				placeholder = 'Enter the goal name'
+				style = {styles.rewardsTextInput}
+				placeholder = 'e.g. Browse the internet for 10 mins'
 				placeholderTextColor = 'rgba(196,196,196,1)'
 				underlineColorAndroid = 'transparent'
+				onChangeText = {text => saveImmediateRewards(text)}
+				value = {immediateRewards}
 				/>
-				<Text style = {styles.titleText}>Frequency:</Text>
-				<View style = {styles.dayOptionContainer}>
-					<View style = {styles.dayCircle}><Text style = {styles.dayCircleText}>E</Text></View>
-					<View style = {styles.dayCircle}><Text style = {styles.dayCircleText}>MO</Text></View>
-					<View style = {styles.dayCircle}><Text style = {styles.dayCircleText}>TU</Text></View>
-					<View style = {[styles.dayCircle, styles.dayCircleSelected]}><Text style = {styles.dayCircleTextSelected}>WED</Text></View>
-					<View style = {styles.dayCircle}><Text style = {styles.dayCircleText}>TH</Text></View>
-					<View style = {[styles.dayCircle, styles.dayCircleSelected]}><Text style = {styles.dayCircleTextSelected}>FRI</Text></View>
-					<View style = {styles.dayCircle}><Text style = {styles.dayCircleText}>SAT</Text></View>
-					<View style = {styles.dayCircle}><Text style = {styles.dayCircleText}>SUN</Text></View>
-				</View>
-				<Text style = {styles.titleText}>Set Rewards</Text>
-				<View style = {styles.rewardsFormContainer}>
-					<Text style = {styles.titleText}>Immediate Rewards:</Text>
-					<TextInput
-					style = {styles.rewardsTextInput}
-					placeholder = 'e.g. Browse the internet for 10 mins'
-					placeholderTextColor = 'rgba(196,196,196,1)'
-					underlineColorAndroid = 'transparent'
-					/>
-					<Text style = {styles.titleText}>Completed Rewards:</Text>
-					<TextInput
-					style = {styles.rewardsTextInput}
-					placeholder = 'e.g. Treat myself two scoops of gelato'
-					placeholderTextColor = 'rgba(196,196,196,1)'
-					underlineColorAndroid = 'transparent'
-					/>
-				</View>
-				<TouchableOpacity style = {styles.buttonSave}>
-					<Text style = {styles.buttonSaveText}>SAVE</Text>
-				</TouchableOpacity>
+				<Text style = {styles.titleText}>Completed Reward:</Text>
+				<TextInput
+				style = {styles.rewardsTextInput}
+				placeholder = 'e.g. Treat myself two scoops of gelato'
+				placeholderTextColor = 'rgba(196,196,196,1)'
+				underlineColorAndroid = 'transparent'
+				onChangeText = {text => saveCompletedRewards(text)}
+				value = {completedRewards}
+				/>
 			</View>
-		);
+			<TouchableOpacity
+			style = {styles.buttonSave}
+			onPress = {() => handleAddGoal(goalName, goalBrief, frequency, immediateRewards, completedRewards)}
+			>
+				<Text style = {styles.buttonSaveText}>SAVE</Text>
+			</TouchableOpacity>
+		</ScrollView>
+	</View>
+)
 	}
-}
 
 const { width } = Dimensions.get('window')
 
@@ -130,8 +193,9 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 		color: 'rgba(255,255,255,1.0)',
 		letterSpacing: 1.28,
-		textAlign: 'center',
-
+		textAlign: 'center'
 	}
 
 })
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddGoal)

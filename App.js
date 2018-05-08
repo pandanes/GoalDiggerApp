@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import RootView from './src/screens'
 //import Home from './src/screens/home';
-//import store from './src/redux'
+import store from './src/redux'
 
  /* export default class App extends Component {
   render() {
@@ -12,12 +12,10 @@ import RootView from './src/screens'
   }
 }  */
 
-   const App = () => (
-  //<Register />
-  //<RootView />
-  //<Provider store={store}>
+const App = () => (
+  <Provider store={store}>
     <RootView />
-  //</Provider>
+  </Provider>
 )  
 
 export default App 

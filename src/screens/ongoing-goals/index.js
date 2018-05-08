@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, Image, View, ScrollView, FlatList, Dimensions, StyleSheet} from 'react-native';
-
+import styles from './shared-style'
 export default class OngoingGoals extends Component {
   render() {
 	const goals= [

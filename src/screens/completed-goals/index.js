@@ -9,6 +9,8 @@ export default class CompletedGoals extends Component {
 		{title: 'Save the world', brief: 'Lorem ipsum dolor sit amet'},
 		{title: 'Learn to fly', brief: 'Help me burn out bright'},
 		{title: 'Be a minority', brief: 'You are on your own side'},
+		{title: 'Live happily', brief: 'Run and tell the angels'},
+		{title: 'Looking for something', brief: 'Make way back home and fly'},
 		{title: 'Take me close to you', brief: 'Far away far away waste away tonight'},
 	];
 

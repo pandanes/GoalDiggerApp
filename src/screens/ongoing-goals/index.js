@@ -8,6 +8,8 @@ export default class OngoingGoals extends Component {
 		{title: 'Ongoing', brief: 'Lorem ipsum dolor sit amet'},
 		{title: 'Save the world', brief: 'Lorem ipsum dolor sit amet'},
 		{title: 'Learn to fly', brief: 'Help me burn out bright'},
+		{title: 'Live happily', brief: 'Run and tell the angels'},
+		{title: 'Looking for something', brief: 'Make way back home and fly'},
 		{title: 'Be a minority', brief: 'You are on your own side'},
 		{title: 'Take me close to you', brief: 'Far away far away waste away tonight'},
 	];

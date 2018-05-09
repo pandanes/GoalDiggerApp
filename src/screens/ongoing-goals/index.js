@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
 import { Text, Image, View, TouchableOpacity, ScrollView, FlatList, Dimensions, StyleSheet} from 'react-native';
 import styles from '../shared-style'
+import CheckIcon from '../../components/checkIcon'
 
 export default class OngoingGoals extends Component {
   render() {
 	const goals= [
-		{title: 'Ongoing', brief: 'Lorem ipsum dolor sit amet'},
+		{title: 'Ongoing bb💖', brief: 'Lorem ipsum dolor sit amet'},
 		{title: 'Save the world', brief: 'Lorem ipsum dolor sit amet'},
 		{title: 'Learn to fly', brief: 'Help me burn out bright'},
-		{title: 'Live happily', brief: 'Run and tell the angels'},
+		{title: 'Live happily', brief: 'Idk what what what what'},
 		{title: 'Looking for something', brief: 'Make way back home and fly'},
-		{title: 'Be a minority', brief: 'You are on your own side'},
-		{title: 'Take me close to you', brief: 'Far away far away waste away tonight'},
+		{title: 'Be nice', brief: 'You are on your own side'},
+		{title: 'Take me home', brief: 'Far away far away'},
 	];
 
 	return (
 		<View style = {{flex:1}}>
-			<View style = {styles.container}>
+			{/* <View style = {styles.container}> */}
 				<ScrollView showsVerticalScrollIndicator = {false}>
 					<FlatList
 					showsVerticalScrollIndicator={false}
@@ -24,19 +25,19 @@ export default class OngoingGoals extends Component {
 					data = {goals}
 					renderItem = {
 						({item}) => 
-						<View style = {styles.goalCard}>
+						<TouchableOpacity
+							style = {styles.goalCard}
+							onPress={this.props.onPress}>
 							<View style = {styles.goalDetailWrapper}>
 								<Text style = {styles.goalTitleText}>{item.title}</Text>
 								<Text style = {styles.goalBriefText}>{item.brief}</Text>
 							</View>
-							<View style = {styles.checkIconWrapper}>
-								<Image style = {styles.checkIcon} source = {require('../../assets/icons/checked-inactive.png')} /> 
-							</View>
-						</View>
+							<CheckIcon />
+						</TouchableOpacity>
 					}>
 					</FlatList>
 				</ScrollView>
-			</View>
+			{/* </View> */}
 		</View>
 	);
   }

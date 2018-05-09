@@ -6,14 +6,14 @@ import OngoingGoals from '../ongoing-goals'
 import CompletedGoals from '../completed-goals'
 
 const { width } = Dimensions.get('window')
-
 const styles = StyleSheet.create({
 	indicatorContainer: {
-		height: 50,
 		position: 'absolute',
 		top: 0,
 		left: 0,
 		right: 0,
+		height: 56,
+		backgroundColor: 'rgba(60,145,242,1)'
 	},
 })
 
@@ -22,7 +22,11 @@ export default class GoalsList extends Component {
     return (
 			<View style={{ flex: 1 }}>
 				<IndicatorViewPager
-					style={{ flex: 1 }}
+					style={{ flex: 1,
+						backgroundColor: 'rgba(253,253,253,1.0)',
+						paddingHorizontal: 16,
+						paddingTop: 48,
+						paddingBottom: 8 }}
 					indicator={this._renderTitleIndicator()}>
 						<OngoingGoals />
 						<CompletedGoals />
@@ -32,6 +36,11 @@ export default class GoalsList extends Component {
 	}
 
 	_renderTitleIndicator() {
-		return <PagerTitleIndicator selectedItemStyle={{ width: width/2 }} itemStyle={{ width: width/2 }} style={styles.indicatorContainer} titles={['Ongoing', 'Completed']} />;
+		return <PagerTitleIndicator
+						selectedItemStyle={{ width: width/2 }}
+						itemStyle={{ width: width/2 }}
+						style={styles.indicatorContainer}
+						titles={['ONGOING', 'COMPLETED']}
+					/>;
 }
 }

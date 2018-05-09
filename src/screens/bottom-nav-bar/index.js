@@ -313,7 +313,8 @@ export default class BottomNav extends Component {
           </View>
           <View>
               {/* <List onPress={() => console.log('aku ini mau pindah screen!!!')} /> */}
-              <GoalsList />
+              <GoalsList
+								onPress={() => console.log('tolong please kebaca')}/>
           </View>
         </IndicatorViewPager>
       </View>

@@ -21,12 +21,10 @@ export default class Home extends Component {
 				<ScrollView showsVerticalScrollIndicator = {false}>
 					<Text style = {styles.titleText}>TODAY STATS</Text>
 					<View style = {styles.counterContainer}>
-						<View style = {styles.counterRectangle}>
-							<TouchableOpacity onPress={this.props.onPress}>
-								<Text style = {styles.counterNumber}>0</Text>
-								<Text style = {styles.counterText}>GOALS DONE</Text>
-							</TouchableOpacity>
-						</View>
+						<TouchableOpacity style = {styles.counterRectangle} onPress={this.props.onPress}>
+							<Text style = {styles.counterNumber}>0</Text>
+							<Text style = {styles.counterText}>GOALS DONE</Text>
+						</TouchableOpacity>
 						<View style = {styles.counterRectangle}>
 							<Text style = {styles.counterNumber}>0</Text>
 							<Text style = {styles.counterText}>REWARDS RECEIVED</Text>
@@ -59,7 +57,6 @@ export default class Home extends Component {
 }
 
 const { width } = Dimensions.get('window')
-
 const styles = StyleSheet.create({
 	header: {
 		height: 56,

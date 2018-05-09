@@ -291,8 +291,8 @@ export default class BottomNav extends Component {
       selectedIconSource: require('../../assets/icons/nav-bar-add.png')
       },{
       text: 'List',
-      iconSource: require('../../assets/icons/nav-bar-list-inactive.png'),
-      selectedIconSource: require('../../assets/icons/nav-bar-list.png')
+      iconSource: require('../../assets/icons/nav-bar-list-inactive2.png'),
+      selectedIconSource: require('../../assets/icons/nav-bar-list2.png')
       }];
           
     return <PagerTabIndicator tabs={tabs} iconStyle={{ width: 28, height: 28}} selectedIconStyle={{ width: 28, height: 28}} />;
@@ -305,16 +305,16 @@ export default class BottomNav extends Component {
         style={{flex:1}}
         indicator={this._renderTabIndicator()}>
           <View>
-              {/* <ExampleView /> */}
-              <Home onPress={() => console.log('aku pasti kebaca')}/>
+              <Home onPress={() => this.props.navigation.navigate('detail')}/>
           </View>
           <View>
               <AddGoal />
           </View>
           <View>
-              {/* <List onPress={() => console.log('aku ini mau pindah screen!!!')} /> */}
-              <GoalsList
-								onPress={() => console.log('tolong please kebaca')}/>
+							{/* <ExampleView /> */}
+							 {/* <List /> */}
+							{/* <Detail /> */}
+              <GoalsList onPress={() => this.props.navigation.navigate('detail')}/>
           </View>
         </IndicatorViewPager>
       </View>

@@ -25,10 +25,10 @@ export default class GoalsList extends Component {
 					style={{ flex: 1,
 						backgroundColor: 'rgba(253,253,253,1.0)',
 						paddingHorizontal: 16,
-						paddingTop: 48,
+						paddingTop: 56,
 						paddingBottom: 8 }}
 					indicator={this._renderTitleIndicator()}>
-						<OngoingGoals />
+						<OngoingGoals onPress={this.props.onPress}/>
 						<CompletedGoals />
 				</IndicatorViewPager>
 			</View>
@@ -37,8 +37,27 @@ export default class GoalsList extends Component {
 
 	_renderTitleIndicator() {
 		return <PagerTitleIndicator
-						selectedItemStyle={{ width: width/2 }}
-						itemStyle={{ width: width/2 }}
+						selectedItemStyle={{ width: width/2}}
+						selectedItemTextStyle={{
+							fontFamily: 'OpenSans',
+							fontWeight: 'bold',
+							fontSize: 14,
+							color: 'rgba(255,255,255,1)',
+							letterSpacing: 1.28,
+							lineHeight: 19
+						}}
+						itemTextStyle={{
+							fontFamily: 'OpenSans',
+							fontWeight: 'bold',
+							fontSize: 14,
+							color: 'rgba(255,255,255,0.3)',
+							letterSpacing: 1.28,
+							lineHeight: 19
+						}}
+						itemStyle={{ width: width/2, backgroundColor: 'rgba(32,74,122,1)' }}
+						selectedBorderStyle={{
+							backgroundColor: 'rgba(80,227,194,1)'
+						}}
 						style={styles.indicatorContainer}
 						titles={['ONGOING', 'COMPLETED']}
 					/>;

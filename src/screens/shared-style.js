@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
 		minHeight: 75,
 		elevation: 3,
 		//borderWidth: 1
+		marginBottom: 3,
 		borderLeftWidth: 6,
 		borderLeftColor: 'rgba(74,144,226,1)'
 	},

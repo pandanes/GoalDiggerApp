@@ -57,105 +57,124 @@ const AddGoal = ({saveGoalName,
 //	console.log(n);
 
 		return (
-	<View style = {styles.container}>
-		<ScrollView showsVerticalScrollIndicator = {false}>
-			<Text style = {styles.titleText}>Goal Name:</Text>
-			<TextInput
-			style = {styles.textInputStyle}
-			placeholder = 'Enter the goal name'
-			placeholderTextColor = 'rgba(196,196,196,1)'
-			underlineColorAndroid = 'transparent'
-			onChangeText = {text => saveGoalName(text)}
-			value = {goalName}
-			/>
-			<Text style = {styles.titleText}>Goal Brief:</Text>
-			<TextInput
-			style = {styles.textInputStyle}
-			placeholder = 'Enter the goal brief'
-			placeholderTextColor = 'rgba(196,196,196,1)'
-			underlineColorAndroid = 'transparent'
-			onChangeText = {text => saveGoalBrief(text)}
-			value = {goalBrief}
-			/>
-			<Text style = {styles.titleText}>Frequency:</Text>
-			<View style = {styles.dayOptionContainer}>
-				<TouchableOpacity
-				//onPress = {() => changeDays(!everyDay)}
-				onPress = {() => changeDays('everyday', !everyday)}
-				style = {everyday ? styles.dayCircle : [styles.dayCircle, styles.dayCircleSelected]}>
-					<Text style = {styles.dayCircleText}>E</Text>
-				</TouchableOpacity>
-				<TouchableOpacity
-				onPress = {value => handleDay('monday', value)}
-				style = {styles.dayCircle}>
-					<Text style = {styles.dayCircleText}>MO</Text>
-				</TouchableOpacity>
-				<TouchableOpacity
-				onPress = {value => handleDay('tuesday', value)}
-				style = {styles.dayCircle}>
-					<Text style = {styles.dayCircleText}>TU</Text>
-				</TouchableOpacity>
-				<TouchableOpacity
-				onPress = {value => handleDay('wednesday', value)}
-				style = {[styles.dayCircle, styles.dayCircleSelected]}>
-					<Text style = {styles.dayCircleTextSelected}>WED</Text>
-				</TouchableOpacity>
-				<TouchableOpacity
-				onPress = {value => handleDay('thursday', value)}
-				style = {styles.dayCircle}>
-					<Text style = {styles.dayCircleText}>TH</Text>
-				</TouchableOpacity>
-				<TouchableOpacity
-				onPress = {value => handleDay('friday', value)}
-				style = {[styles.dayCircle, styles.dayCircleSelected]}>
-					<Text style = {styles.dayCircleTextSelected}>FRI</Text>
-				</TouchableOpacity>
-				<TouchableOpacity
-				onPress = {value => handleDay('saturday', value)}
-				style = {styles.dayCircle}>
-					<Text style = {styles.dayCircleText}>SAT</Text>
-				</TouchableOpacity>
-				<TouchableOpacity
-				onPress = {value => handleDay('sunday', value)}
-				style = {styles.dayCircle}>
-					<Text style = {styles.dayCircleText}>SUN</Text>
-				</TouchableOpacity>
+		<View style = {{flex: 1}}>
+			<View style = {styles.header}>
+				<Text style = {styles.headerText}>Add New Goal</Text>
 			</View>
-			<Text style = {styles.titleText}>Set Rewards</Text>
-			<View style = {styles.rewardsFormContainer}>
-				<Text style = {styles.titleText}>Immediate Reward:</Text>
-				<TextInput
-				style = {styles.rewardsTextInput}
-				placeholder = 'e.g. Browse the internet for 10 mins'
-				placeholderTextColor = 'rgba(196,196,196,1)'
-				underlineColorAndroid = 'transparent'
-				onChangeText = {text => saveImmediateRewards(text)}
-				value = {immediateRewards}
-				/>
-				<Text style = {styles.titleText}>Completed Reward:</Text>
-				<TextInput
-				style = {styles.rewardsTextInput}
-				placeholder = 'e.g. Treat myself two scoops of gelato'
-				placeholderTextColor = 'rgba(196,196,196,1)'
-				underlineColorAndroid = 'transparent'
-				onChangeText = {text => saveCompletedRewards(text)}
-				value = {completedRewards}
-				/>
+			<View style = {styles.container}>
+				<ScrollView showsVerticalScrollIndicator = {false}>
+					<Text style = {styles.titleText}>Goal Name:</Text>
+					<TextInput
+					style = {styles.textInputStyle}
+					placeholder = 'Enter the goal name'
+					placeholderTextColor = 'rgba(196,196,196,1)'
+					underlineColorAndroid = 'transparent'
+					onChangeText = {text => saveGoalName(text)}
+					value = {goalName}
+					/>
+					<Text style = {styles.titleText}>Goal Brief:</Text>
+					<TextInput
+					style = {styles.textInputStyle}
+					placeholder = 'Enter the goal brief'
+					placeholderTextColor = 'rgba(196,196,196,1)'
+					underlineColorAndroid = 'transparent'
+					onChangeText = {text => saveGoalBrief(text)}
+					value = {goalBrief}
+					/>
+					<Text style = {styles.titleText}>Frequency:</Text>
+					<View style = {styles.dayOptionContainer}>
+						<TouchableOpacity
+						//onPress = {() => changeDays(!everyDay)}
+						onPress = {() => changeDays('everyday', !everyday)}
+						style = {everyday ? styles.dayCircle : [styles.dayCircle, styles.dayCircleSelected]}>
+							<Text style = {styles.dayCircleText}>E</Text>
+						</TouchableOpacity>
+						<TouchableOpacity
+						onPress = {value => handleDay('monday', value)}
+						style = {styles.dayCircle}>
+							<Text style = {styles.dayCircleText}>MO</Text>
+						</TouchableOpacity>
+						<TouchableOpacity
+						onPress = {value => handleDay('tuesday', value)}
+						style = {styles.dayCircle}>
+							<Text style = {styles.dayCircleText}>TU</Text>
+						</TouchableOpacity>
+						<TouchableOpacity
+						onPress = {value => handleDay('wednesday', value)}
+						style = {[styles.dayCircle, styles.dayCircleSelected]}>
+							<Text style = {styles.dayCircleTextSelected}>WED</Text>
+						</TouchableOpacity>
+						<TouchableOpacity
+						onPress = {value => handleDay('thursday', value)}
+						style = {styles.dayCircle}>
+							<Text style = {styles.dayCircleText}>TH</Text>
+						</TouchableOpacity>
+						<TouchableOpacity
+						onPress = {value => handleDay('friday', value)}
+						style = {[styles.dayCircle, styles.dayCircleSelected]}>
+							<Text style = {styles.dayCircleTextSelected}>FRI</Text>
+						</TouchableOpacity>
+						<TouchableOpacity
+						onPress = {value => handleDay('saturday', value)}
+						style = {styles.dayCircle}>
+							<Text style = {styles.dayCircleText}>SAT</Text>
+						</TouchableOpacity>
+						<TouchableOpacity
+						onPress = {value => handleDay('sunday', value)}
+						style = {styles.dayCircle}>
+							<Text style = {styles.dayCircleText}>SUN</Text>
+						</TouchableOpacity>
+					</View>
+					<Text style = {styles.titleText}>Set Rewards</Text>
+					<View style = {styles.rewardsFormContainer}>
+						<Text style = {styles.titleText}>Immediate Reward:</Text>
+						<TextInput
+						style = {styles.rewardsTextInput}
+						placeholder = 'e.g. Browse the internet for 10 mins'
+						placeholderTextColor = 'rgba(196,196,196,1)'
+						underlineColorAndroid = 'transparent'
+						onChangeText = {text => saveImmediateRewards(text)}
+						value = {immediateRewards}
+						/>
+						<Text style = {styles.titleText}>Completed Reward:</Text>
+						<TextInput
+						style = {styles.rewardsTextInput}
+						placeholder = 'e.g. Treat myself two scoops of gelato'
+						placeholderTextColor = 'rgba(196,196,196,1)'
+						underlineColorAndroid = 'transparent'
+						onChangeText = {text => saveCompletedRewards(text)}
+						value = {completedRewards}
+						/>
+					</View>
+					<TouchableOpacity
+					style = {styles.buttonSave}
+					onPress = {() => handleAddGoal(goalName, goalBrief, frequency, immediateRewards, completedRewards)}
+					>
+						<Text style = {styles.buttonSaveText}>SAVE</Text>
+					</TouchableOpacity>
+				</ScrollView>
 			</View>
-			<TouchableOpacity
-			style = {styles.buttonSave}
-			onPress = {() => handleAddGoal(goalName, goalBrief, frequency, immediateRewards, completedRewards)}
-			>
-				<Text style = {styles.buttonSaveText}>SAVE</Text>
-			</TouchableOpacity>
-		</ScrollView>
-	</View>
+		</View>
 )
 	}
 
 const { width } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
+	header: {
+		height: 56,
+		justifyContent: 'center',
+		alignItems: 'center',
+    backgroundColor: 'rgba(60,145,242,1)'
+	},
+	headerText: {
+		fontFamily: 'OpenSans',
+		fontWeight: 'bold',
+		fontSize: 18,
+		color: 'rgba(255,255,255,1.0)',
+		letterSpacing: 1.28,
+		lineHeight: 19
+	},
 	container: {
 		flex: 1,
 		backgroundColor: 'rgba(253,253,253,1.0)',

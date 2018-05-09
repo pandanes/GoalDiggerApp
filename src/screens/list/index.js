@@ -45,8 +45,8 @@ class Ongoing extends Component {
 			<View style = {styles.container}>
 				<ScrollView showsVerticalScrollIndicator = {false}>
 					<FlatList
-					showsVerticalScrollIndicator={false}
-					keyExtractor={item => item.title}
+					showsVerticalScrollIndicator = {false}
+					keyExtractor = {item => item.title}
 					data = {goals}
 					renderItem = {
 						({item}) => 
@@ -73,8 +73,7 @@ class Completed extends React.Component {
     return (
       <View style = {styles.container}>
         <ScrollView showsVerticalScrollIndicator = {false}>
-            {/* <Text style = {styles.titleText}>TODAY GOALS</Text> */}
-            <View style = {styles.goalCard}>
+            <TouchableOpacity style = {styles.goalCard}>
                 <View style = {styles.goalDetailWrapper}>
                     <Text style = {styles.goalTitleText}>Learn Javascript</Text>
                     <Text style = {styles.goalBriefText}>Help me burn out bright</Text>
@@ -82,7 +81,7 @@ class Completed extends React.Component {
                 <View style = {styles.checkIconWrapper}>
                     <Image style = {styles.checkIcon} source = {require('../../assets/icons/checked-inactive.png')} /> 
                 </View>
-            </View>
+            </TouchableOpacity>
             <View style = {styles.goalCard}>
                 <View style = {styles.goalDetailWrapper}>
                     <Text style = {styles.goalTitleText}>Learn Javascript</Text>
@@ -190,7 +189,8 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         backgroundColor: 'rgba(255,255,255,1)',
         minHeight: 75,
-        elevation: 3,
+				elevation: 3,
+				marginBottom: 3,
         //borderWidth: 1,
         borderLeftWidth: 6,
         borderLeftColor: 'rgba(74,144,226,1)'

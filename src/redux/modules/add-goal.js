@@ -15,7 +15,7 @@ export const addGoalActions = Object.freeze({
 	saveFrequency: (value) => ({ type: ADD_GOAL_ACTIONS.SAVE_FREQUENCY, value}),
 	saveImmediateRewards: (text) => ({ type: ADD_GOAL_ACTIONS.SAVE_IMMEDIATE_REWARDS, text}),
 	saveCompletedRewards: (text) => ({ type: ADD_GOAL_ACTIONS.SAVE_COMPLETED_REWARDS, text}),
-	changeDay: (value) => ({ type: ADD_GOAL_ACTIONS.CHANGE_DAY, value}),
+	changeDay: (field, value) => ({ type: ADD_GOAL_ACTIONS.CHANGE_DAY, field, value}),
 })
 
 //REDUCER
@@ -35,6 +35,13 @@ const initState = {
 	immediateRewards: '',
 	completedRewards: '',
 	everyday: false,
+	monday: false,
+	tuesday: false,
+	wednesday: false,
+	thursday: false,
+	friday: false,
+	saturday: false,
+	sunday: false,
 }
 
 const reducer = (state = initState, action) => {

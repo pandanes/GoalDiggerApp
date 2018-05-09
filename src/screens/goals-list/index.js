@@ -1,4 +1,4 @@
-import { View, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import React, { Component } from 'react';
 import { PagerTitleIndicator, IndicatorViewPager } from 'rn-viewpager';
 
@@ -13,14 +13,31 @@ const styles = StyleSheet.create({
 		left: 0,
 		right: 0,
 		height: 56,
-		backgroundColor: 'rgba(60,145,242,1)'
+		backgroundColor: '#3DA7F2'
 	},
+	header: {
+		height: 56,
+		justifyContent: 'center',
+		alignItems: 'center',
+    backgroundColor: 'rgba(60,145,242,1)'
+	},
+	headerText: {
+		fontFamily: 'OpenSans',
+		fontWeight: 'bold',
+		fontSize: 18,
+		color: 'rgba(255,255,255,1.0)',
+		letterSpacing: 1.28,
+		lineHeight: 19
+	}
 })
 
 export default class GoalsList extends Component {
   render() {
     return (
 			<View style={{ flex: 1 }}>
+				<View style = {styles.header}>
+					<Text style = {styles.headerText}>Goals List</Text>
+				</View>
 				<IndicatorViewPager
 					style={{ flex: 1,
 						backgroundColor: 'rgba(253,253,253,1.0)',
@@ -42,7 +59,7 @@ export default class GoalsList extends Component {
 							fontFamily: 'OpenSans',
 							fontWeight: 'bold',
 							fontSize: 14,
-							color: 'rgba(255,255,255,1)',
+							color: '#FFFFFF',
 							letterSpacing: 1.28,
 							lineHeight: 19
 						}}
@@ -50,13 +67,15 @@ export default class GoalsList extends Component {
 							fontFamily: 'OpenSans',
 							fontWeight: 'bold',
 							fontSize: 14,
-							color: 'rgba(255,255,255,0.3)',
+							color: '#FFFFFF',
 							letterSpacing: 1.28,
-							lineHeight: 19
+							lineHeight: 19,
+							opacity: 0.6,
 						}}
-						itemStyle={{ width: width/2, backgroundColor: 'rgba(32,74,122,1)' }}
+						itemStyle={{ width: width/2, backgroundColor: '#3DA7F2' }}
 						selectedBorderStyle={{
-							backgroundColor: 'rgba(80,227,194,1)'
+							borderWidth: 2,
+							borderColor: '#FFFFFF',
 						}}
 						style={styles.indicatorContainer}
 						titles={['ONGOING', 'COMPLETED']}

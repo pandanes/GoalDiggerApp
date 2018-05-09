@@ -27,6 +27,7 @@ class CheckIcon extends Component {
 
 class Ongoing extends Component {
   render() { 
+		console.log('hai im here', this.props)
     const goals= [
 		{title: 'Ongoing', brief: 'Lorem ipsum dolor sit amet'},
 		{title: 'Save the world', brief: 'Lorem ipsum dolor sit amet'},
@@ -37,19 +38,22 @@ class Ongoing extends Component {
 		{title: 'Take me close to you', brief: 'Far away far away waste away tonight'},
 	];
 	return (
-		//<View style = {{flex:1}}>
+		<View style = {{flex:1}}>
+			{/* <View style = {styles.header}>
+				<Text style = {styles.headerText}>Goal List</Text>
+			</View> */}
 			<View style = {styles.container}>
-				<ScrollView showsVerticalScrollIndicator = {false}><Button
-              title="tes"
-              onPress={() => this.props.navigation.navigate('detail')}
-            />
+				<ScrollView showsVerticalScrollIndicator = {false}>
 					<FlatList
 					showsVerticalScrollIndicator={false}
 					keyExtractor={item => item.title}
 					data = {goals}
 					renderItem = {
 						({item}) => 
-						<TouchableOpacity style = {styles.goalCard} onPress={() => this.props.navigation.navigate('detail')}>
+						<TouchableOpacity
+							style = {styles.goalCard}
+							onPress={this.props.onPress}
+						>
 							<View style = {styles.goalDetailWrapper}>
 								<Text style = {styles.goalTitleText}>{item.title}</Text>
 								<Text style = {styles.goalBriefText}>{item.brief}</Text>
@@ -60,7 +64,7 @@ class Ongoing extends Component {
 					</FlatList>
 				</ScrollView>
 			</View>
-		//</View>
+		</View>
 	);
   }
 }
@@ -149,8 +153,21 @@ class Completed extends React.Component {
 }
 
 const { width } = Dimensions.get('window')
-
 const styles = StyleSheet.create({
+		header: {
+			height: 56,
+			justifyContent: 'center',
+			alignItems: 'center',
+			backgroundColor: 'rgba(60,145,242,1)'
+		},
+		headerText: {
+			fontFamily: 'OpenSans',
+			fontWeight: 'bold',
+			fontSize: 18,
+			color: 'rgba(255,255,255,1.0)',
+			letterSpacing: 1.28,
+			lineHeight: 19
+		},
     container: {
         flex: 1,
         backgroundColor: 'rgba(253,253,253,1.0)',
@@ -165,39 +182,6 @@ const styles = StyleSheet.create({
         letterSpacing: 1.28,
         lineHeight: 19
     },
-    counterContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 16,
-        marginBottom: 25
-    },
-    counterRectangle: {
-        width: width*0.44,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 12,
-        backgroundColor: 'rgba(255,255,255,1)',
-        borderRadius: 4,
-        minHeight: 116,
-        shadowColor: 'red',
-        shadowOffset: {width: 0, height: 5},
-        shadowRadius: 12,
-        shadowOpacity: 1,
-        elevation: 3,
-    },
-    counterNumber: {
-        fontFamily: 'OpenSans',
-        //fontWeight: '400',
-        fontSize: 52,
-        color: 'rgba(81,81,81,1.0)'
-    },
-    counterText: {
-        fontFamily: 'OpenSans',
-        fontWeight: '500',
-        fontSize: 14,
-        letterSpacing: 1,
-        color: 'rgba(74,144,226,1)',
-    },
     goalCard: {
         marginTop: 16,
         paddingRight: 20,
@@ -207,7 +191,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255,255,255,1)',
         minHeight: 75,
         elevation: 3,
-        //borderWidth: 1
+        //borderWidth: 1,
         borderLeftWidth: 6,
         borderLeftColor: 'rgba(74,144,226,1)'
     },
@@ -244,7 +228,47 @@ const styles = StyleSheet.create({
     }
 })
 
-export default TabNavigator({
-  Ongoing: { screen: Ongoing },
-  Completed: { screen: Completed },
-});
+const ListTab = TabNavigator(
+  {
+    'ongoing': {
+      screen: Ongoing,
+      navigationOptions: {
+        //   headerTitle: 'Pinjaman Saya',
+      },
+    },
+    'completed': {
+      screen: Completed,
+      navigationOptions: {
+        //   headerTitle: 'Pinjaman Saya',
+      },
+    },
+  },
+  {
+    tabBarOptions: {
+      activeTintColor: '#FFFFFF',
+      inactiveTintColor: '#CFFAFF',
+      style: {
+        backgroundColor: '#2196F3',
+        elevation: 0,
+        shadowOpacity: 0,
+      },
+      indicatorStyle: { backgroundColor: '#FFFFFF' },
+    },
+  },
+)
+
+const App = StackNavigator(
+	{
+		list: {
+			screen: ListTab,
+			navigationOptions: {
+				header: null,
+			}
+		}
+	},
+	{
+    initialRouteName: 'list'
+  }
+)
+
+export default App

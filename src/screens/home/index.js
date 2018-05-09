@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Text, Image, View, ScrollView, FlatList, Dimensions, StyleSheet} from 'react-native';
+import { Text, Image, View, ScrollView, FlatList, Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
 
 export default class Home extends Component {
   render() {
+		console.log('checking home', this.props)
 	const goals= [
 		{title: 'Learn Javascript', brief: 'Lorem ipsum dolor sit amet'},
 		{title: 'Save the world', brief: 'Lorem ipsum dolor sit amet'},
@@ -21,8 +22,10 @@ export default class Home extends Component {
 					<Text style = {styles.titleText}>TODAY STATS</Text>
 					<View style = {styles.counterContainer}>
 						<View style = {styles.counterRectangle}>
-							<Text style = {styles.counterNumber}>0</Text>
-							<Text style = {styles.counterText}>GOALS DONE</Text>
+							<TouchableOpacity onPress={this.props.onPress}>
+								<Text style = {styles.counterNumber}>0</Text>
+								<Text style = {styles.counterText}>GOALS DONE</Text>
+							</TouchableOpacity>
 						</View>
 						<View style = {styles.counterRectangle}>
 							<Text style = {styles.counterNumber}>0</Text>

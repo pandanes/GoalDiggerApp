@@ -6,7 +6,7 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
-import * as Animatable from 'react-native-animatable';
+//import * as Animatable from 'react-native-animatable';
 import Collapsible from 'react-native-collapsible';
 import Accordion from 'react-native-collapsible/Accordion';
 

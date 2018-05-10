@@ -29,6 +29,16 @@ const styles = StyleSheet.create({
 		color: 'rgba(81,81,81,1.0)',
 		letterSpacing: 1.28,
 		lineHeight: 19
+  },
+  textInputStyle: {
+    fontSize: 18,
+    letterSpacing: 1,
+		marginTop: 12,
+		marginBottom: 24,
+		padding: 16,
+		backgroundColor: 'rgba(255,255,255,1.0)',
+		borderRadius: 4,
+		elevation: 2    
 	},
 	counterContainer: {
 		flexDirection: 'row',
@@ -99,14 +109,41 @@ const styles = StyleSheet.create({
 		lineHeight: 19,
 		marginTop: 4
 	},
-	checkIconWrapper: {
-		paddingVertical: 16,
-		flex: 2,
-		justifyContent: 'center'
+  dayOptionContainer: {
+		marginBottom: 28,
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		paddingTop: 12
 	},
-	checkIcon: {
-		width: 30,
-		height: 32
+	rewardsFormContainer: {
+		marginTop: 12,
+		marginBottom: 20,
+		paddingTop: 20,
+		paddingHorizontal: 16,
+		backgroundColor: 'rgba(255,255,255,1)',
+		borderRadius: 4,
+		elevation: 2
+	},
+	rewardsTextInput: {
+    fontSize: 16,
+    letterSpacing: 1,
+		marginBottom: 20,
+		padding: 12,
+		borderBottomWidth: 1,
+		borderBottomColor: 'rgba(216,216,216,1)'  
+	},
+	buttonSave: {
+		paddingVertical: 12,
+		backgroundColor: 'rgba(44,110,183,1)',
+		borderRadius: 5
+	},
+	buttonSaveText: {
+		fontFamily: 'OpenSans',
+		fontWeight: 'bold',
+		fontSize: 18,
+		color: 'rgba(255,255,255,1.0)',
+		letterSpacing: 1.28,
+		textAlign: 'center'
 	}
 })
 

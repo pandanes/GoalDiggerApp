@@ -23,10 +23,10 @@ export default class Home extends Component {
 				<ScrollView showsVerticalScrollIndicator = {false}>
 					<Text style = {styles.titleText}>TODAY STATS</Text>
 					<View style = {styles.counterContainer}>
-						<TouchableOpacity style = {styles.counterRectangle} onPress={this.props.onPress}>
+						<View style = {styles.counterRectangle}>
 							<Text style = {styles.counterNumber}>0</Text>
 							<Text style = {styles.counterText}>GOALS DONE</Text>
-						</TouchableOpacity>
+						</View>
 						<View style = {styles.counterRectangle}>
 							<Text style = {styles.counterNumber}>0</Text>
 							<Text style = {styles.counterText}>REWARDS RECEIVED</Text>

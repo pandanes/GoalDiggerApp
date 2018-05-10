@@ -150,9 +150,9 @@ const styles = StyleSheet.create({
 	},
 	rewardsBg: {
 		marginTop: 4,
-		marginBottom: 20,
+    marginBottom: 12,
 		padding: 14,
-		borderBottomColor: 'rgba(216,216,216,1)'  
+    borderBottomColor: 'rgba(216,216,216,1)'
 	},
 	buttonSave: {
 		paddingVertical: 12,

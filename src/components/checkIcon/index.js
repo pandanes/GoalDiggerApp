@@ -1,25 +1,39 @@
 import React, { Component } from 'react';
 import { Image, TouchableOpacity, Dimensions, StyleSheet} from 'react-native';
+import { connect } from 'react-redux'
+import { homeActions } from '../../redux/modules/home'
 
-export default class CheckIcon extends Component {
+const active = require('../../assets/icons/checked-active.png')
+const inactive = require('../../assets/icons/checked-inactive.png')
+
+
+//GET STATE
+const mapStateToProps = state => ({ home: state.home })
+
+const mapDispatchToProps = dispatch => ({
+  goalCount: () => dispatch(homeActions.goalCount())
+})
+class CheckIcon extends Component {
 	constructor(props) {
     super(props);
     this.state = {
-			pic: require('../../assets/icons/checked-inactive.png')
+      clicked: false,
+      disabled: false,
 		}
-	}
+  }
+  
+  onClick() {
 
-	iconClicked() {
-    this.setState({
-      pic: require('../../assets/icons/checked-active.png')
-    });
-     // goals done ++
-	}
+console.log('landing here', this.props.goalCount)
+    this.setState({ clicked: true, disabled: true })
+    this.props.goalCount()
+  }
 	
 	render() {
+    console.log('landing here 1')
 		return (
-			<TouchableOpacity style = {styles.checkIconWrapper} onPress={() => this.iconClicked()}>
-				<Image style = {styles.checkIcon} source = {this.state.pic} /> 
+			<TouchableOpacity disabled={this.state.disabled} style = {styles.checkIconWrapper} onPress={() => this.onClick()}>
+				<Image style = {styles.checkIcon} source = {this.state.clicked ? active : inactive} /> 
 			</TouchableOpacity>
 		)
 	}
@@ -37,3 +51,5 @@ const styles = StyleSheet.create({
         height: 32
     }
 })
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckIcon)

@@ -2,12 +2,13 @@ import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
   dayCircle: {
+    flex: 1,
 		width: 45,
 		height: 45,
 		backgroundColor: 'rgba(196,196,196,0.32)',
 		borderRadius: 45/2,
 		justifyContent: 'center',
-		alignItems: 'center'
+    alignItems: 'center',
 	},
 	dayCircleText: {
 		fontFamily: 'OpensSans',
@@ -17,6 +18,7 @@ const styles = StyleSheet.create({
 		letterSpacing: 1
 	},
 	dayCircleSelected: {
+    flex: 1,
     width: 45,
 		height: 45,
 		borderRadius: 45/2,

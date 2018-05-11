@@ -19,8 +19,8 @@ const mapDispatchToProps = dispatch  => ({
 })
 
 //SAVE TO ASYNC STORAGE
-handleAddGoal = (goalName, goalBrief, immediateRewards, completedRewards) => {
-	const data = {goalName, goalBrief, immediateRewards, completedRewards}
+handleAddGoal = (day, goalName, goalBrief, immediateRewards, completedRewards) => {
+	const data = {day, goalName, goalBrief, immediateRewards, completedRewards}
 	console.log('goal data:', data)
 	AsyncStorage.setItem('data', JSON.stringify(data))
 }
@@ -65,7 +65,7 @@ const AddGoal = ({saveGoalName,
 	changeDays
 	}) => {
 
-  const day = { everyday, monday, tuesday, wednesday, thursday, friday, saturday, sunday,}
+  const day = { everyday, monday, tuesday, wednesday, thursday, friday, saturday, sunday }
 
 	var d = new Date();
 	var weekday = new Array(7);
@@ -107,14 +107,14 @@ const AddGoal = ({saveGoalName,
           />
           <Text style = {styles.titleText}>Frequency:</Text>
           <View style = {styles.dayOptionContainer}>
-            <DayCircle onPress = {() => changeDays('everyday', !everyday)} status={everyday} text = 'E'/>
-            <DayCircle onPress = {() => changeDays('monday', !monday)} status={monday} text = 'MO'/>
-            <DayCircle onPress = {() => changeDays('tuesday', !tuesday)} status={tuesday} text = 'TU'/>
-            <DayCircle onPress = {() => changeDays('wednesday', !wednesday)} status={wednesday} text = 'WED'/>
-            <DayCircle onPress = {() => changeDays('thursday', !thursday)} status={thursday} text = 'TH'/>
-            <DayCircle onPress = {() => changeDays('friday', !friday)} status={friday} text = 'FRI'/>
-            <DayCircle onPress = {() => changeDays('saturday', !saturday)} status={saturday} text = 'SAT'/>
-            <DayCircle onPress = {() => changeDays('sunday', !sunday)} status={sunday} text = 'SUN'/>
+            <DayCircle onPressButton = {() => changeDays('everyday', !everyday)} status={everyday} text = 'E'/>
+            <DayCircle onPressButton = {() => changeDays('monday', !monday)} status={monday} text = 'MO'/>
+            <DayCircle onPressButton = {() => changeDays('tuesday', !tuesday)} status={tuesday} text = 'TU'/>
+            <DayCircle onPressButton = {() => changeDays('wednesday', !wednesday)} status={wednesday} text = 'WED'/>
+            <DayCircle onPressButton = {() => changeDays('thursday', !thursday)} status={thursday} text = 'TH'/>
+            <DayCircle onPressButton = {() => changeDays('friday', !friday)} status={friday} text = 'FRI'/>
+            <DayCircle onPressButton = {() => changeDays('saturday', !saturday)} status={saturday} text = 'SAT'/>
+            <DayCircle onPressButton = {() => changeDays('sunday', !sunday)} status={sunday} text = 'SUN'/>
           </View>
           <Text style = {styles.titleText}>Set Rewards</Text>
           <View style = {styles.rewardsFormContainer}>

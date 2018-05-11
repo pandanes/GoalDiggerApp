@@ -3,6 +3,8 @@ import { Text, TextInput, Image, TouchableOpacity, View, StyleSheet, ScrollView,
 
 export default class Detail extends Component {
 	render() {
+    const data = this.props.navigation
+    console.log('landing here check props bro goal name:', data.state.params.goalName)
 		return (
 			<View style = {{flex:1}}>
 				<View style = {styles.headerNav}>
@@ -15,7 +17,7 @@ export default class Detail extends Component {
 					<ScrollView showsVerticalScrollIndicator = {false}>
 						<Text style = {styles.detailLabelText}>Goal Name:</Text>
 						<View style = {styles.detailBg}>
-							<Text style = {styles.titleText}>Save the world</Text>
+							<Text style = {styles.titleText}>{data.state.params.goalName}</Text>
 						</View>
 						<Text style = {styles.detailLabelText}>Frequency:</Text>
 						<View style = {styles.selectedDayContainer}>
@@ -26,11 +28,11 @@ export default class Detail extends Component {
 						<View style = {styles.rewardsFormContainer}>
 								<Text style = {styles.detailLabelText}>Immediate:</Text>
 								<View style = {styles.rewardsBg}>
-										<Text style = {styles.titleText}>Browse the internet for 10 mins</Text>
+										<Text style = {styles.titleText}>{data.state.params.immediateRewards}</Text>
 								</View>
 								<Text style = {styles.detailLabelText}>Completed:</Text>
 								<View style = {styles.rewardsBg}>
-										<Text style = {styles.titleText}>Treat myself two scoops of gelato</Text>
+										<Text style = {styles.titleText}>{data.state.params.completedRewards}</Text>
 								</View>
 						</View>
 						<Text style = {styles.titleText}>Stats:</Text>

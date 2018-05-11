@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		borderRadius: 4,
 		backgroundColor: 'rgba(255,255,255,1)',
-		minHeight: 75,
+		//minHeight: 75,
 		elevation: 3,
 		//borderWidth: 1
 		marginBottom: 3,
@@ -111,9 +111,9 @@ const styles = StyleSheet.create({
 	},
   dayOptionContainer: {
 		marginBottom: 28,
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		paddingTop: 12
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+		paddingTop: 12,
 	},
 	rewardsFormContainer: {
 		marginTop: 12,

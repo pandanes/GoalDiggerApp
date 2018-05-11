@@ -30,17 +30,20 @@ class Home extends Component {
     }
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     AsyncStorage.getItem('data')
-    .then(res => this.setState({ data: JSON.parse(res) }))
-    //Dispatched action👆
-    this.props.setGoal(data)
+    .then(res => {
+      const data = JSON.parse(res)
+      this.setState({ data })
+      //Dispatched action👆
+      this.props.setGoal(data)
+      console.log('check', data)
+    })
     .catch(err => console.log('landing here error'))
-
-    console.log('render different state', props.home.goal)
   }
 
   render(){
+    console.log('landing inkjsdkjhskdjhka', this.state.data)
     return (
       <View style = {{flex:1}}>
             <View style = {styles.header}>
@@ -51,21 +54,21 @@ class Home extends Component {
                 <Text style = {styles.titleText}>TODAY STATS</Text>
                 <View style = {styles.counterContainer}>
                   <View style = {styles.counterRectangle}>
-                    <Text style = {styles.counterNumber}>0</Text>
+                    <Text style = {styles.counterNumber}>{this.props.home.goalsCount}</Text>
                     <Text style = {styles.counterText}>GOALS DONE</Text>
                   </View>
                   <View style = {styles.counterRectangle}>
-                    <Text style = {styles.counterNumber}>0</Text>
+                    <Text style = {styles.counterNumber}>{this.props.home.rewardsCount}</Text>
                     <Text style = {styles.counterText}>REWARDS RECEIVED</Text>
                   </View>
                 </View>
                 <Text style = {styles.titleText}>TODAY GOALS</Text>
                 <TouchableOpacity
-                    style = {styles.goalCard}
-                    onPress={this.props.onPress}>
+                    style = {[styles.goalCard, {maxHeight:75}]}
+                    onPress={() => this.props.onPress(this.state.data)}>
                     <View style = {styles.goalDetailWrapper}>
-                      <Text style = {styles.goalTitleText}>{this.goalBrief}</Text>
-                      <Text style = {styles.goalBriefText}>{this.goalBrief}</Text>
+                      <Text style = {styles.goalTitleText}>{this.props.home.goal.goalName}</Text>
+                      <Text style = {styles.goalBriefText}>{this.props.home.goal.goalBrief}</Text>
                     </View>
                     <CheckIcon />
                   </TouchableOpacity>

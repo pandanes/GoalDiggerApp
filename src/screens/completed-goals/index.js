@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, Image, View, ScrollView, TouchableOpacity, FlatList, Dimensions, StyleSheet} from 'react-native';
 import styles from '../shared-style'
-import CheckIcon from '../../components/checkIcon'
+import RefreshIcon from '../../components/refreshIcon'
 
 export default class CompletedGoals extends Component {
   render() {
@@ -32,7 +32,7 @@ export default class CompletedGoals extends Component {
 									<Text style = {styles.goalTitleText}>{item.title}</Text>
 									<Text style = {styles.goalBriefText}>{item.brief}</Text>
 								</View>
-								<CheckIcon />
+								<RefreshIcon />
 							</TouchableOpacity>
 						}>
 						</FlatList>

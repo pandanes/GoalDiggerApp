@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import styles from './style'
 
 /* const DayCircle = (props) => (
@@ -20,15 +20,18 @@ class DayCircle extends Component {
   
 	render() {
 		return (
-			<TouchableOpacity
+      <View>
+			<TouchableOpacity 
         // style = {[styles.dayCircle, this.props.style]}
+        //hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
         style = {this.props.status ? styles.dayCircleSelected : styles.dayCircle}
-        onPress = {this.props.onPress}
+        onPress = {this.props.onPressButton}
       >
-        <Text style = {this.props.status ? styles.dayCircleTextSelected : styles.dayCircleText}>
+        <Text onPress = {this.props.onPressButton} style = {this.props.status ? styles.dayCircleTextSelected : styles.dayCircleText}>
           {this.props.text}
         </Text>
     </TouchableOpacity>
+    </View>
 		)
 	}
 }

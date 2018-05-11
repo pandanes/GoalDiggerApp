@@ -3,6 +3,7 @@ import { PagerTabIndicator, IndicatorViewPager } from 'rn-viewpager';
 import { Button, Text, Image, View, FlatList, TouchableOpacity, ScrollView, Dimensions, StyleSheet} from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 
+
 import Home from '../home'
 import AddGoal from '../add-goal'
 import List from '../list'
@@ -110,10 +111,14 @@ export default class BottomNav extends Component {
     return (
       <View style={{flex:1}}>        
         <IndicatorViewPager
+        keyboardDismissMode='none'
         style={{flex:1}}
         indicator={this._renderTabIndicator()}>
           <View>
-              <Home onPress={() => this.props.navigation.navigate('detail')}/>
+              <Home
+                onPress={data => this.props.navigation.navigate('detail', data)}
+                //onPress = {value => this.handleDetail(value)}
+              />
           </View>
           <View>
               <AddGoal />
@@ -122,9 +127,9 @@ export default class BottomNav extends Component {
 							{/* <ExampleView /> */}
 							 {/* <List /> */}
               {/* <Detail /> */}
-              <Scroll />
-              {/* <GoalsList
-                onPress={() => this.props.navigation.navigate('detail')}/> */}
+              {/* <Scroll /> */}
+              <GoalsList
+                onPress={() => this.props.navigation.navigate('detail')}/>
           </View>
         </IndicatorViewPager>
       </View>

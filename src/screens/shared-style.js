@@ -130,7 +130,8 @@ const styles = StyleSheet.create({
 		marginBottom: 20,
 		padding: 12,
 		borderBottomWidth: 1,
-		borderBottomColor: 'rgba(216,216,216,1)'  
+    borderBottomColor: 'rgba(216,216,216,1)' ,
+    underlineColorAndroid: 'transparent'
 	},
 	buttonSave: {
 		paddingVertical: 12,

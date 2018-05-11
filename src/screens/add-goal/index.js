@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch  => ({
 //SAVE TO ASYNC STORAGE
 handleAddGoal = (goalName, goalBrief, immediateRewards, completedRewards) => {
 	const data = {goalName, goalBrief, immediateRewards, completedRewards}
-	console.log('goal name:', goalName)
+	console.log('goal data:', data)
 	AsyncStorage.setItem('data', JSON.stringify(data))
 }
 

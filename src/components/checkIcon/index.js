@@ -13,6 +13,7 @@ export default class CheckIcon extends Component {
     this.setState({
       pic: require('../../assets/icons/checked-active.png')
     });
+     // goals done ++
 	}
 	
 	render() {

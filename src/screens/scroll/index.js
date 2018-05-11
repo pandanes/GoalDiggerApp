@@ -23,7 +23,7 @@ const { width: SCREEN_WIDTH } = Dimensions.get("screen")
 export default class Scroll extends Component {
   constructor() {
     super();
-
+    
     this.state = {
       scrollY: new Animated.Value(0)
     }

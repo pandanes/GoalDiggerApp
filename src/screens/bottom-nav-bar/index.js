@@ -11,6 +11,7 @@ import Detail from '../detail'
 import GoalsList from '../goals-list'
 import ExampleView from '../collapse'
 import Scroll from '../scroll'
+import Swipe from '../swipe'
 
 const { width } = Dimensions.get('window')
 const styles = StyleSheet.create({
@@ -111,6 +112,7 @@ export default class BottomNav extends Component {
     return (
       <View style={{flex:1}}>        
         <IndicatorViewPager
+        horizontalScroll={false}
         keyboardDismissMode='none'
         style={{flex:1}}
         indicator={this._renderTabIndicator()}>
@@ -128,8 +130,9 @@ export default class BottomNav extends Component {
 							 {/* <List /> */}
               {/* <Detail /> */}
               {/* <Scroll /> */}
-              <GoalsList
-                onPress={() => this.props.navigation.navigate('detail')}/>
+              <Swipe />
+              {/* <GoalsList
+                onPress={() => this.props.navigation.navigate('detail')}/> */}
           </View>
         </IndicatorViewPager>
       </View>

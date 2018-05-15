@@ -18,6 +18,9 @@ import Swipeable from 'react-native-swipeable';
 import styles from "../shared-style";
 import CheckIcon from "../../components/checkIcon";
 
+import thunkMiddleware from 'redux-thunk';
+import * as firebase from 'firebase';
+
 //GET STATE
 const mapStateToProps = state => ({ home: state.home });
 
@@ -93,7 +96,9 @@ class Home extends Component {
     
     const {leftActionActivated, toggle} = this.state;
 
-    console.log("landing inkjsdkjhskdjhka", this.state.data);
+    //console.log("landing inkjsdkjhskdjhka", this.state.data);
+    //console.log('landing fireeebaseee', data)
+
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.header}>

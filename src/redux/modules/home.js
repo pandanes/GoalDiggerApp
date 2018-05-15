@@ -17,7 +17,8 @@ export const homeActions = Object.freeze({
 const initState = {
     goalsCount: 1,
     rewardsCount: 1,
-    goal: {}
+    goal: {},
+    goals: {}
 }
 
 const reducer = (state = initState, action) => {

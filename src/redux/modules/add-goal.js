@@ -31,7 +31,6 @@ const initState = {
 
 	goalName: '',
 	goalBrief: '',
-	frequency: '',
 	immediateRewards: '',
 	completedRewards: '',
 	everyday: false,

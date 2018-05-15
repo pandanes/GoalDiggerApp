@@ -98,16 +98,18 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
     color: "rgba(81,81,81,1.0)",
+    color: "rgba(81,81,81,1.0)",
     letterSpacing: 1.5,
     lineHeight: 19
   },
   goalBriefText: {
     fontFamily: "OpenSans",
     fontSize: 14,
-    color: "rgba(196,196,196,1)",
+    //color: "rgba(196,196,196,1)",
+    color: "#949494",
     letterSpacing: 1.5,
     lineHeight: 19,
-    marginTop: 4
+    marginTop: 6
   },
   dayOptionContainer: {
     marginBottom: 28,

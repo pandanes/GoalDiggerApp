@@ -44,10 +44,9 @@ export default class Detail extends Component {
 												<View style = {styles.barUndone}></View>
 												<View style = {styles.barUndone}></View>
 												<View style = {styles.barUndone}></View>
-												<View style = {styles.barUndone}></View>
 										</View>
 										<View style = {styles.statsNumberContainer}>
-												<Text style = {styles.numberDoneText}>2 </Text>
+												<Text style = {[styles.numberDoneText, {color: '#FF5E71'}]}>2 </Text>
 												<Text style = {styles.numberUndoneText}>/ 5</Text>
 										</View>
 								</View>
@@ -180,7 +179,8 @@ const styles = StyleSheet.create({
 		width: 9,
 		height: 55,
 		borderRadius: 7,
-		backgroundColor: 'rgba(74,144,226,1)',
+    //backgroundColor: 'rgba(74,144,226,1)',
+    backgroundColor: '#FF5E71',
 		marginRight: 8
 	},
 	barUndone: {

@@ -9,7 +9,7 @@ export default class RefreshIcon extends Component {
 	constructor(props) {
     super(props);
     this.state = {
-      pic: require('../../assets/icons/refresh.png')
+      pic: require('../../assets/icons/repeat.png')
 		}
 	}
 
@@ -23,7 +23,7 @@ export default class RefreshIcon extends Component {
 	render() {
 		return (
 			<TouchableOpacity style = {styles.checkIconWrapper} /* onPress={() => this.iconClicked()} */>
-				<Image style = {[{width: 30, height: 30, opacity: 0.5}]} source = {this.state.pic} /> 
+				<Image style = {[{width: 30, height: 30, opacity: 0.3}]} source = {this.state.pic} /> 
 			</TouchableOpacity>
 		)
 	}

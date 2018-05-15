@@ -10,7 +10,7 @@ class RootView extends React.Component {
 
   render() {
     return (
-      <SignIn />
+      <AppNavigator />
     )
   }
 }

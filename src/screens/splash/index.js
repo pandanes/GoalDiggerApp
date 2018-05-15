@@ -24,7 +24,7 @@ export default class Splash extends Component {
   render() {
     return (
       <View style = {styles.container}>
-        <View styles = {styles.imageContainer}><Image style = {{width: 189, height: 104}} source ={ require('../../assets/logo.png')} /></View>
+        <View styles = {styles.imageContainer}><Image style = {{width: 189, height: 104}} source = { require('../../assets/logo.png')} /></View>
         <Image style = {{width: 147, height: 22, marginTop: 16}} source ={ require('../../assets/logotitle.png')} />
         <Text style = {styles.titleText}>Version 0.9.0</Text>
       </View>

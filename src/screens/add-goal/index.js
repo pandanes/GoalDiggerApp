@@ -83,7 +83,7 @@ const AddGoal = ({saveGoalName,
   return (
     <View style = {{flex: 1}}>
       <View style = {styles.header}>
-        <Text onPress = {getData} style = {styles.headerText}>Add New Goal</Text>
+        <Text style = {styles.headerText}>Add New Goal</Text>
       </View>
       <View style = {styles.container}>
         <ScrollView showsVerticalScrollIndicator = {false}>

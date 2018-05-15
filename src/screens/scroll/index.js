@@ -134,7 +134,7 @@ const styles1 = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		marginTop: 16,
-    marginBottom: 25,
+    marginBottom: 20,
 	},
 	counterRectangle: {
 		width: SCREEN_WIDTH*0.44,
@@ -183,7 +183,6 @@ const styles1 = StyleSheet.create({
     color: 'rgba(74,144,226,1)',
     letterSpacing: 0.8,
 	},
-
   container: {
     flex: 1,
     backgroundColor: 'white'

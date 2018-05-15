@@ -26,12 +26,18 @@ const mapDispatchToProps = dispatch => ({
   setGoal: value => dispatch(homeActions.setGoal(value))
 });
 
-/* const leftContent = <Text style={{ backgroundColor: 'tomato', height: 75, marginTop: 16, textAlign: 'right'}}>
-  Pull to activate</Text>; */
+//Collapsing animations
+const HEADER_EXPANDED_HEIGHT = 220;
+const HEADER_COLLAPSED_HEIGHT = 140;
 
+//Swipeable goal cards
 const rightButtons = [
-  <TouchableHighlight style={{height: 75, marginTop: 16, backgroundColor:'azure'}}><Text>Button 1</Text></TouchableHighlight>,
-  <TouchableHighlight style={{height: 75, marginTop: 16, backgroundColor:'beige'}}><Text>Button 2</Text></TouchableHighlight>
+  <TouchableOpacity style={{height: 75, marginTop: 16, paddingLeft: '6%', backgroundColor:'#92E5B4', justifyContent: 'center'}}>
+    <Image style = {{width: 30, height: 32}} source = {require('../../assets/icons/edit.png')} />
+  </TouchableOpacity>,
+  <TouchableOpacity style={{height: 75, marginTop: 16, paddingLeft: '6%', backgroundColor:'#FF5E71', justifyContent: 'center'}}>
+    <Image style = {{width: 30, height: 32}} source = {require('../../assets/icons/delete.png')} />
+  </TouchableOpacity>
 ];
 
 const goals = [
@@ -46,7 +52,9 @@ class Home extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      scrollY: new Animated.Value(0)
+    };
   }
 
   componentDidMount() {
@@ -67,6 +75,22 @@ class Home extends Component {
   };
 
   render() {
+    const headerHeight = this.state.scrollY.interpolate({
+      inputRange: [0, HEADER_EXPANDED_HEIGHT-HEADER_COLLAPSED_HEIGHT],
+      outputRange: [HEADER_EXPANDED_HEIGHT, HEADER_COLLAPSED_HEIGHT],
+      extrapolate: 'clamp'
+    });
+    const headerTitleOpacity = this.state.scrollY.interpolate({
+      inputRange: [0, HEADER_EXPANDED_HEIGHT-HEADER_COLLAPSED_HEIGHT],
+      outputRange: [0, 1],
+      extrapolate: 'clamp'
+    });
+    const heroTitleOpacity = this.state.scrollY.interpolate({
+      inputRange: [0, HEADER_EXPANDED_HEIGHT-HEADER_COLLAPSED_HEIGHT],
+      outputRange: [1, 0],
+      extrapolate: 'clamp'
+    });
+    
     const {leftActionActivated, toggle} = this.state;
 
     console.log("landing inkjsdkjhskdjhka", this.state.data);
@@ -76,23 +100,54 @@ class Home extends Component {
           <Text style={styles.headerText}>Dashboard</Text>
         </View>
         <View style={styles.container}>
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <Text style={styles.titleText}>TODAY STATS</Text>
-            <View style={styles.counterContainer}>
-              <View style={styles.counterRectangle}>
-                <Text style={styles.counterNumber}>
-                  {this.props.home.goalsCount}
-                </Text>
-                <Text style={styles.counterText}>GOALS DONE</Text>
+
+        <Animated.View style={[styles1.header, { height: headerHeight }]}>
+          <Animated.View style={{ opacity: headerTitleOpacity, bottom: 16, paddingHorizontal: 16, paddingBottom: 16, marginVertical: 28 }}>
+          <View style = {styles1.counterContainer}>
+              <View style = {styles1.counterRectangleCollapsed}>
+                <Text style = {styles1.counterTextCollapsed}>GOALS DONE: {this.props.home.goalsCount}</Text>
               </View>
-              <View style={styles.counterRectangle}>
-                <Text style={styles.counterNumber}>
-                  {this.props.home.rewardsCount}
-                </Text>
-                <Text style={styles.counterText}>REWARDS RECEIVED</Text>
+              <View style = {styles1.counterRectangleCollapsed}>
+                <Text style = {styles1.counterTextCollapsed}>REWARDS RECEIVED: {this.props.home.rewardsCount}</Text>
               </View>
             </View>
-            <Text style={styles.titleText}>TODAY GOALS</Text>
+            <Text style = {styles.titleText}>TODAY GOALS</Text>
+            <View style={{ height: 1, backgroundColor: '#B0E5FF', marginTop: 10}} />
+          </Animated.View>
+
+          <Animated.View style = {{position: 'absolute', bottom: 16, left: 16, opacity: heroTitleOpacity}}>
+            <Animated.Text style = {[styles.titleText, {opacity: heroTitleOpacity}]}>TODAY STATS</Animated.Text>
+              <View style={styles1.counterContainer}>
+                <View style={styles.counterRectangle}>
+                  <Text style={styles.counterNumber}>
+                    {this.props.home.goalsCount}
+                  </Text>
+                  <Text style={styles.counterText}>GOALS DONE</Text>
+                </View>
+                <Animated.View style={styles.counterRectangle}>
+                  <Animated.Text style={styles.counterNumber}>
+                    {this.props.home.rewardsCount}
+                  </Animated.Text>
+                  <Animated.Text style={styles.counterText}>REWARDS RECEIVED</Animated.Text>
+                </Animated.View>
+              </View>
+            </Animated.View>
+
+        </Animated.View>
+        <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles1.scrollContainer}
+        onScroll={Animated.event(
+          [{ nativeEvent: {
+              contentOffset: {
+                y: this.state.scrollY
+              }
+            }
+          }])
+        }
+          scrollEventThrottle={16}>
+
+            <Animated.Text style = {[styles.titleText, {opacity: heroTitleOpacity}]}>TODAY GOALS</Animated.Text>
             <Swipeable leftActionActivationDistance={200}
             leftContent={(
               <View style={{height: 75, marginTop: 16, backgroundColor: leftActionActivated ? 'lightgoldenrodyellow' : 'steelblue'}}>
@@ -106,7 +161,6 @@ class Home extends Component {
             onLeftActionComplete={() => this.setState({toggle: !toggle})}
             rightButtons={rightButtons}
           >
-          
               <TouchableOpacity
                 style={[styles.goalCard, { maxHeight: 75 }]}
                 onPress={() => this.props.onPress(this.state.data)}
@@ -128,8 +182,19 @@ class Home extends Component {
               data={goals}
               renderItem={({ item }) => (
                 <Swipeable 
-                //leftContent={leftContent}
-                rightButtons={rightButtons}>
+                leftActionActivationDistance={200}
+                leftContent={(
+                  <View style={{height: 75, marginTop: 16, backgroundColor: leftActionActivated ? 'lightgoldenrodyellow' : 'steelblue'}}>
+                    {leftActionActivated ?
+                      <Text style={{textAlign: 'right'}}>release!</Text> :
+                      <Text style={{textAlign: 'right'}}>keep pulling!</Text>}
+                  </View>
+                )}
+                onLeftActionActivate={() => this.setState({leftActionActivated: true})}
+                onLeftActionDeactivate={() => this.setState({leftActionActivated: false})}
+                onLeftActionComplete={() => this.setState({toggle: !toggle})}
+                rightButtons={rightButtons}
+                >
                 <TouchableOpacity
                   style={styles.goalCard}
                   onPress={this.props.onPress}
@@ -151,3 +216,47 @@ class Home extends Component {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
+
+const { width } = Dimensions.get("window");
+const styles1 = StyleSheet.create({
+  counterContainer: {
+    width: width-32,
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		marginTop: 16,
+    marginBottom: 24,
+	},
+  counterRectangleCollapsed: {
+    width: width*0.44,
+    height: 42,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 12,
+    borderRadius: 4,
+    //shadowRadius: 12,
+    shadowOpacity: 0.5,
+    elevation: 2,
+  },
+  counterNumberCollapsed: {
+    fontFamily: 'OpenSans',
+    color: 'rgba(81,81,81,1.0)'
+  },
+  counterTextCollapsed: {
+    fontFamily: 'OpenSans',
+    fontWeight: '500',
+    fontSize: 13,
+    color: 'rgba(74,144,226,1)',
+    letterSpacing: 0.8,
+  },
+  scrollContainer: {
+    paddingTop: HEADER_EXPANDED_HEIGHT-16
+  },
+  header: {
+    backgroundColor: 'rgba(253,253,253,1.0)',
+    position: 'absolute',
+    width: width,
+    top: 0,
+    left: 0,
+    zIndex: 9999,
+  },
+});

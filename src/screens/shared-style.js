@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: 16,
-    marginBottom: 25
+    marginBottom: 25,
   },
   counterRectangle: {
     width: width * 0.44,

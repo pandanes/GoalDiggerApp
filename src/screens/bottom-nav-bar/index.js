@@ -12,6 +12,7 @@ import GoalsList from '../goals-list'
 import ExampleView from '../collapse'
 import Scroll from '../scroll'
 import Swipe from '../swipe'
+import Onboard from '../onboard'
 
 const { width } = Dimensions.get('window')
 const styles = StyleSheet.create({
@@ -130,12 +131,18 @@ export default class BottomNav extends Component {
 							 {/* <List /> */}
               {/* <Detail /> */}
               {/* <Scroll /> */}
-              <Swipe />
-              {/* <GoalsList
-                onPress={() => this.props.navigation.navigate('detail')}/> */}
+              {/* <Swipe /> */}
+              {/* <Onboard /> */}
+              <GoalsList
+                onPress={() => this.props.navigation.navigate('detail')}/>
           </View>
         </IndicatorViewPager>
       </View>
       );
   }
 }
+
+//baby steps - every day / week - goal/mountain
+
+//log daily icon: calendar/today
+//rewards : trophy

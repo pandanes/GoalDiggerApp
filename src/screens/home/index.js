@@ -20,6 +20,17 @@ import CheckIcon from "../../components/checkIcon";
 
 import thunkMiddleware from 'redux-thunk';
 import * as firebase from 'firebase';
+import {firebaseConfig, init, database, ref} from '../helpers'
+
+//Get data from firebase
+//const goalsData = ref.child('goals')
+ /* const goalsData = ref.on('value', function(snapshot) {
+  //console.log('land here awww snapshot val', snapshot.val())
+  //updateStarCount(postElement, snapshot.val());
+  var gooals = snapshot.val();
+  return gooals
+});  */
+
 
 //GET STATE
 const mapStateToProps = state => ({ home: state.home });
@@ -56,26 +67,71 @@ class Home extends Component {
     super(props);
 
     this.state = {
+      goalsDataArray: [],
       scrollY: new Animated.Value(0)
     };
   }
+  state = {
+    leftActionActivated: false,
+    toggle: false,
+    goalsDataArray: [],
+  };
 
   componentDidMount() {
+
+    /* const goalsData = firebase.database().ref('goals');
+    goalsData.on('value', (snapshot) => {
+      this.setState({
+      goalsDataArray: snapshot.val()
+      })
+    }); */
+
+    /* const goalsData = ref.on('value', function(snapshot) {
+      this.setState({
+        goalsDataArray: snapshot.val()
+        })
+    }) */
+
+    this.getData(); 
+
     AsyncStorage.getItem("data")
       .then(res => {
         const data = JSON.parse(res);
         this.setState({ data });
         //Dispatched action👆
         this.props.setGoal(data);
-        console.log("check", data);
+        //console.log("check", data);
       })
       .catch(err => console.log("landing here error"));
   }
 
-  state = {
-    leftActionActivated: false,
-    toggle: false
-  };
+  getData() { 
+    const goalsData = firebase.database().ref('goals');
+    goalsData.on('value', (snapshot) => {
+      //console.log('apakah aku val', snapshot.val())
+      const goalsDataArr= snapshot.val()
+      const keys = Object.keys(goalsDataArr)
+      console.log('apakah aku key', keys)
+
+      const items = [];
+      snapshot.forEach((child) => {
+        items.push({
+          key: child.key,
+          goalName: child.val().goalName,
+          goalBrief: child.val().goalBrief,
+          day: child.val().day,
+          immediateRewards: child.val().immediateRewards,
+          completedRewards: child.val().completedRewards,
+          
+        });
+        //console.log('apakah aku items', items)
+      });
+      this.setState({
+      goalsDataArray: items
+      })
+     
+    }); 
+  }
 
   render() {
     const headerHeight = this.state.scrollY.interpolate({
@@ -97,7 +153,8 @@ class Home extends Component {
     const {leftActionActivated, toggle} = this.state;
 
     //console.log("landing inkjsdkjhskdjhka", this.state.data);
-    //console.log('landing fireeebaseee', data)
+    //console.log('landing firebase goal keys=', this.state.goalsDataArray.keys)
+    console.log('landing firebase goal data array=', this.state.goalsDataArray)
 
     return (
       <View style={{ flex: 1 }}>
@@ -153,6 +210,7 @@ class Home extends Component {
           scrollEventThrottle={16}>
 
             <Animated.Text style = {[styles.titleText, {opacity: heroTitleOpacity}]}>TODAY GOALS</Animated.Text>
+            <Text>abc{this.state.goalsDataArray.goalName}</Text>
             <Swipeable leftActionActivationDistance={200}
             leftContent={(
               <View style={{height: 75, marginTop: 16, backgroundColor: leftActionActivated ? 'lightgoldenrodyellow' : 'steelblue'}}>
@@ -213,6 +271,47 @@ class Home extends Component {
                 </Swipeable>
               )}
             />
+
+
+
+
+              <FlatList
+              showsVerticalScrollIndicator={false}
+              keyExtractor={item => item.title}
+              data={this.state.goalsDataArray}
+              renderItem={({ item }) => (
+                <Swipeable 
+                leftActionActivationDistance={200}
+                leftContent={(
+                  <View style={{height: 75, marginTop: 16, backgroundColor: leftActionActivated ? 'lightgoldenrodyellow' : 'steelblue'}}>
+                    {leftActionActivated ?
+                      <Text style={{textAlign: 'right'}}>release!</Text> :
+                      <Text style={{textAlign: 'right'}}>keep pulling!</Text>}
+                  </View>
+                )}
+                onLeftActionActivate={() => this.setState({leftActionActivated: true})}
+                onLeftActionDeactivate={() => this.setState({leftActionActivated: false})}
+                onLeftActionComplete={() => this.setState({toggle: !toggle})}
+                rightButtons={rightButtons}
+                >
+                <TouchableOpacity
+                  style={styles.goalCard}
+                  onPress={this.props.onPress}
+                >
+                  <View style={styles.goalDetailWrapper}>
+                    <Text style={styles.goalTitleText}>{item.goalName}</Text>
+                    <Text style={styles.goalBriefText}>{item.goalBrief}</Text>
+                  </View>
+                  <CheckIcon />
+                </TouchableOpacity>
+                </Swipeable>
+              )}
+            />
+
+
+
+
+
           </ScrollView>
         </View>
       </View>

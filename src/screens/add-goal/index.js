@@ -83,7 +83,7 @@ const AddGoal = ({saveGoalName,
 
 	var n = weekday[d.getDay()];
 //	console.log(n);
-//console.log('landing here fireeeee', firebase)
+console.log('landing here fireeeee', firebase)
   return (
     <View style = {{flex: 1}}>
       <View style = {styles.header}>

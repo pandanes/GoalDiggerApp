@@ -119,7 +119,7 @@ export default class BottomNav extends Component {
         indicator={this._renderTabIndicator()}>
           <View>
               <Home
-                onPress={data => this.props.navigation.navigate('detail', data)}
+                onPress={goalsDataArray => this.props.navigation.navigate('detail', goalsDataArray)}
                 //onPress = {value => this.handleDetail(value)}
               />
           </View>

@@ -54,6 +54,8 @@ const rightButtons = [
   </TouchableOpacity>
 ];
 
+
+
 const goals = [
   { title: "Learn Javascript", brief: "Lorem ipsum dolor sit amet" },
   { title: "Save the world", brief: "Lorem ipsum dolor sit amet" },
@@ -70,6 +72,8 @@ class Home extends Component {
       goalsDataArray: [],
       scrollY: new Animated.Value(0)
     };
+
+    this.itemsRef = firebase.database().ref();
   }
   state = {
     leftActionActivated: false,
@@ -109,9 +113,16 @@ class Home extends Component {
     const goalsData = firebase.database().ref('goals');
     goalsData.on('value', (snapshot) => {
       //console.log('apakah aku val', snapshot.val())
-      const goalsDataArr= snapshot.val()
+
+      /* const goalsDataArr= snapshot.val()
       const keys = Object.keys(goalsDataArr)
-      console.log('apakah aku key', keys)
+      //console.log('apakah aku key', keys)
+      for (const i=0; i<keys.length; i++){
+        const k = keys[i]
+        const index = goalsDataArr[k].goalName
+        //console.log('cek for loops', i)
+      } */
+
 
       const items = [];
       snapshot.forEach((child) => {
@@ -122,7 +133,6 @@ class Home extends Component {
           day: child.val().day,
           immediateRewards: child.val().immediateRewards,
           completedRewards: child.val().completedRewards,
-          
         });
         //console.log('apakah aku items', items)
       });
@@ -152,9 +162,19 @@ class Home extends Component {
     
     const {leftActionActivated, toggle} = this.state;
 
+    //Loops through array index?
+    const goalsDataArr = this.state.goalsDataArray
+    const keys = Object.keys(goalsDataArr)
+    console.log ('cek keys', keys)
+    for (const i=0; i<keys.length; i++){
+      const k = keys[i]
+      //const index = goalsDataArr[k].goalName
+      console.log('cek for loops', k)
+    }
+
     //console.log("landing inkjsdkjhskdjhka", this.state.data);
     //console.log('landing firebase goal keys=', this.state.goalsDataArray.keys)
-    console.log('landing firebase goal data array=', this.state.goalsDataArray)
+    //console.log('landing firebase goal data array=', this.state.goalsDataArray[0])
 
     return (
       <View style={{ flex: 1 }}>
@@ -210,7 +230,6 @@ class Home extends Component {
           scrollEventThrottle={16}>
 
             <Animated.Text style = {[styles.titleText, {opacity: heroTitleOpacity}]}>TODAY GOALS</Animated.Text>
-            <Text>abc{this.state.goalsDataArray.goalName}</Text>
             <Swipeable leftActionActivationDistance={200}
             leftContent={(
               <View style={{height: 75, marginTop: 16, backgroundColor: leftActionActivated ? 'lightgoldenrodyellow' : 'steelblue'}}>
@@ -239,78 +258,46 @@ class Home extends Component {
                 <CheckIcon />
               </TouchableOpacity>
             </Swipeable>
+
             <FlatList
-              showsVerticalScrollIndicator={false}
-              keyExtractor={item => item.title}
-              data={goals}
-              renderItem={({ item }) => (
-                <Swipeable 
-                leftActionActivationDistance={200}
-                leftContent={(
-                  <View style={{height: 75, marginTop: 16, backgroundColor: leftActionActivated ? 'lightgoldenrodyellow' : 'steelblue'}}>
-                    {leftActionActivated ?
-                      <Text style={{textAlign: 'right'}}>release!</Text> :
-                      <Text style={{textAlign: 'right'}}>keep pulling!</Text>}
-                  </View>
-                )}
-                onLeftActionActivate={() => this.setState({leftActionActivated: true})}
-                onLeftActionDeactivate={() => this.setState({leftActionActivated: false})}
-                onLeftActionComplete={() => this.setState({toggle: !toggle})}
-                rightButtons={rightButtons}
-                >
-                <TouchableOpacity
-                  style={styles.goalCard}
-                  onPress={this.props.onPress}
-                >
-                  <View style={styles.goalDetailWrapper}>
-                    <Text style={styles.goalTitleText}>{item.title}</Text>
-                    <Text style={styles.goalBriefText}>{item.brief}</Text>
-                  </View>
-                  <CheckIcon />
-                </TouchableOpacity>
-                </Swipeable>
+            showsVerticalScrollIndicator={false}
+            keyExtractor={item => item._key}
+            data={this.state.goalsDataArray}
+            renderItem={({ item }) => (
+              <Swipeable 
+              leftActionActivationDistance={200}
+              leftContent={(
+                <View style={{height: 75, marginTop: 16, backgroundColor: leftActionActivated ? 'lightgoldenrodyellow' : 'steelblue'}}>
+                  {leftActionActivated ?
+                    <Text style={{textAlign: 'right'}}>release!</Text> :
+                    <Text style={{textAlign: 'right'}}>keep pulling!</Text>}
+                </View>
               )}
-            />
-
-
-
-
-              <FlatList
-              showsVerticalScrollIndicator={false}
-              keyExtractor={item => item.title}
-              data={this.state.goalsDataArray}
-              renderItem={({ item }) => (
-                <Swipeable 
-                leftActionActivationDistance={200}
-                leftContent={(
-                  <View style={{height: 75, marginTop: 16, backgroundColor: leftActionActivated ? 'lightgoldenrodyellow' : 'steelblue'}}>
-                    {leftActionActivated ?
-                      <Text style={{textAlign: 'right'}}>release!</Text> :
-                      <Text style={{textAlign: 'right'}}>keep pulling!</Text>}
-                  </View>
-                )}
-                onLeftActionActivate={() => this.setState({leftActionActivated: true})}
-                onLeftActionDeactivate={() => this.setState({leftActionActivated: false})}
-                onLeftActionComplete={() => this.setState({toggle: !toggle})}
-                rightButtons={rightButtons}
-                >
-                <TouchableOpacity
-                  style={styles.goalCard}
-                  onPress={this.props.onPress}
-                >
-                  <View style={styles.goalDetailWrapper}>
-                    <Text style={styles.goalTitleText}>{item.goalName}</Text>
-                    <Text style={styles.goalBriefText}>{item.goalBrief}</Text>
-                  </View>
-                  <CheckIcon />
-                </TouchableOpacity>
-                </Swipeable>
-              )}
-            />
-
-
-
-
+              onLeftActionActivate={() => this.setState({leftActionActivated: true})}
+              onLeftActionDeactivate={() => this.setState({leftActionActivated: false})}
+              onLeftActionComplete={() => this.setState({toggle: !toggle})}
+              rightButtons={[
+                <TouchableOpacity style={{height: 75, marginTop: 16, paddingLeft: '6%', backgroundColor:'#92E5B4', justifyContent: 'center'}}>
+                <Image style = {{width: 30, height: 32}} source = {require('../../assets/icons/edit.png')} />
+              </TouchableOpacity>,
+              <TouchableOpacity onPress={() => this.itemsRef.child(item.key).remove()} style={{height: 75, marginTop: 16, paddingLeft: '6%', backgroundColor:'#FF5E71', justifyContent: 'center'}}>
+                <Image style = {{width: 30, height: 32}} source = {require('../../assets/icons/delete.png')} />
+              </TouchableOpacity>
+              ]}
+              >
+              <TouchableOpacity
+                style={styles.goalCard}
+                onPress={() => this.props.onPress(this.state.goalsDataArray)}
+              >
+                <View style={styles.goalDetailWrapper}>
+                  <Text style={styles.goalTitleText}>{item.goalName}</Text>
+                  <Text style={styles.goalBriefText}>{item.goalBrief}</Text>
+                </View>
+                <CheckIcon />
+              </TouchableOpacity>
+              </Swipeable>
+            )}
+          />
 
           </ScrollView>
         </View>

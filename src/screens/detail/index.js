@@ -4,7 +4,17 @@ import { Text, TextInput, Image, TouchableOpacity, View, StyleSheet, ScrollView,
 export default class Detail extends Component {
 	render() {
     const data = this.props.navigation
-    console.log('landing here check props bro goal name:', data.state.params.goalName)
+    const keys = Object.keys(data.state.params)
+    //console.log('cek for keys', keys)
+
+    //Loop through goals data array
+    for (const i=0; i<keys.length; i++){
+      const k = keys[i]
+      const index = data.state.params[k].goalName
+      //console.log('cek for loops', index)
+    }
+    
+    //console.log('landing here check props goal name:', data.state.params[0].goalName)
 		return (
 			<View style = {{flex:1}}>
 				<View style = {styles.headerNav}>

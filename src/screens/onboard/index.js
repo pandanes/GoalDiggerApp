@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Text, Image, View, TouchableOpacity, Dimensions, StyleSheet} from 'react-native';
 import { PagerDotIndicator, IndicatorViewPager } from "rn-viewpager";
+import { StackNavigator, createStackNavigator } from 'react-navigation';
 
 class Onboard1 extends Component {
   render() {
+    //const { navigate } = this.props.navigation;
     return (
       <View style = {styles.container}>
         <View style = {styles.onboardImageContainer}>
@@ -20,14 +22,14 @@ class Onboard1 extends Component {
         <View style = {styles.onboardPagerContainer} >
             <TouchableOpacity style={{ flex: 1 }}><Text style={[styles.pagerText, {color: 'rgba(149,149,149,1)'}]}>SKIP</Text></TouchableOpacity>
             <TouchableOpacity style={{ flex: 4 }}><Text style={styles.pagerCircle}></Text></TouchableOpacity>
-            <TouchableOpacity style={{ flex: 1 }}><Text style={[styles.pagerText, {color: 'rgba(93,163,244,1)'}]}>NEXT</Text></TouchableOpacity>
+            <TouchableOpacity onPress={this.props.onPress} style={{ flex: 1 }}><Text style={[styles.pagerText, {color: 'rgba(93,163,244,1)'}]}>NEXT</Text></TouchableOpacity>
         </View>
       </View>
     );
   }
 }
 
-class Onboard2 extends Component {
+export class Onboard2 extends Component {
   render() {
     return (
       <View style = {styles.container}>
@@ -54,8 +56,7 @@ class Onboard2 extends Component {
 
 class Onboard3 extends Component {
   render() {
-    const data = this.props.navigation
-
+    
     return (
       <View style = {styles.container}>
         <View style = {styles.onboardImageContainer}>
@@ -89,14 +90,15 @@ export default class OnboardPager extends Component {
                   style={{height:'100%'}}
                   indicator={this._renderDotIndicator()}   
               >
+                
                   <View>
-                      <Onboard1 />
+                      <Onboard1 onPress={() => this.props.navigation.navigate('onboard2')}/>
                   </View>
                   <View>
                     <Onboard2 />
                   </View>
                   <View>
-                    <Onboard3 onPress={() => this.props.navigation.navigate('bottomNav')} />
+                    <Onboard3 onPress={() => this.props.navigation.navigate('signin')} />
                   </View>
               </IndicatorViewPager>
 
@@ -118,6 +120,12 @@ export default class OnboardPager extends Component {
             />;
 }
 }
+
+const App = StackNavigator({
+  Onboard1: { screen: Onboard1 },
+  Onboard2: { screen: Onboard2 },
+  Onboard3: { screen: Onboard3 },
+});
 
 const { width } = Dimensions.get("window");
 const styles = StyleSheet.create({

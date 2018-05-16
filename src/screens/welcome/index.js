@@ -10,7 +10,7 @@ export default class Welcome extends Component {
   componentDidMount (){
     setTimeout(() => {
       this.navigate('onboard')
-    }, 1000)
+    }, 2000)
   }
 
  navigate = routeName => {

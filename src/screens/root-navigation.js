@@ -8,6 +8,8 @@ import BottomNav from './bottom-nav-bar'
 import Splash from './splash'
 import Welcome from './welcome'
 import Onboard from './onboard'
+import SignIn from './signin'
+import {Onboard2} from './onboard'
 
 const AppNavigator = StackNavigator({
   splash: {
@@ -40,8 +42,20 @@ const AppNavigator = StackNavigator({
         header: null,
       },
     },
+    signin: {
+      screen: SignIn,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    onboard2: {
+      screen: Onboard2,
+      navigationOptions: {
+        header: null,
+      },
+    },
 },
-  {initialRouteName: 'bottomNav'}
+  {initialRouteName: 'onboard'}
 )
 
 export default AppNavigator

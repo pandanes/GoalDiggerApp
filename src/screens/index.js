@@ -3,7 +3,7 @@ import { StackNavigator } from 'react-navigation'
 import AppNavigator from './root-navigation'
 import OnboardPager from './onboard'
 import Splash from './splash'
-import SignIn from './sign-in'
+import SignIn from './signin'
 
 
 class RootView extends React.Component {

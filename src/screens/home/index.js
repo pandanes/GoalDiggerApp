@@ -54,8 +54,6 @@ const rightButtons = [
   </TouchableOpacity>
 ];
 
-
-
 const goals = [
   { title: "Learn Javascript", brief: "Lorem ipsum dolor sit amet" },
   { title: "Save the world", brief: "Lorem ipsum dolor sit amet" },
@@ -74,6 +72,7 @@ class Home extends Component {
     };
 
     this.itemsRef = firebase.database().ref();
+
   }
   state = {
     leftActionActivated: false,
@@ -109,10 +108,34 @@ class Home extends Component {
       .catch(err => console.log("landing here error"));
   }
 
+
+
   getData() { 
     const goalsData = firebase.database().ref('goals');
+    console.log('apakah aku goals data', goalsData)
+    console.log('am i triggered')
+
+    goalsData.on('value', function(snapshot) {
+      console.log('am i snapshot??', snapshot.val());
+  });
+
+    goalsData.on("value", function(snapshot) {
+      let snap = snapshot.val();
+      let key = Object.keys(snap)[0]
+      console.log('tolong plissss', snap[key].goalName);
+    }, function (error) {
+      console.log("Errorku apa ya: " + error.code)})
+
+    goalsData.on("value", function(snapshot) {
+      console.log('apa aku adalah snapshot val', snapshot.val()); //tidaaaaaaak!!!!!
+   }, function (error) {
+      console.log("Errorku apa ya: " + error.code);
+   });
+
+   //Use this one
     goalsData.on('value', (snapshot) => {
-      //console.log('apakah aku val', snapshot.val())
+      console.log('apakah aku val', snapshot.val())
+      console.log('am i triggered again????')
 
       /* const goalsDataArr= snapshot.val()
       const keys = Object.keys(goalsDataArr)
@@ -122,7 +145,6 @@ class Home extends Component {
         const index = goalsDataArr[k].goalName
         //console.log('cek for loops', i)
       } */
-
 
       const items = [];
       snapshot.forEach((child) => {
@@ -163,18 +185,19 @@ class Home extends Component {
     const {leftActionActivated, toggle} = this.state;
 
     //Loops through array index?
-    const goalsDataArr = this.state.goalsDataArray
+   /*  const goalsDataArr = this.state.goalsDataArray
     const keys = Object.keys(goalsDataArr)
     console.log ('cek keys', keys)
     for (const i=0; i<keys.length; i++){
       const k = keys[i]
       //const index = goalsDataArr[k].goalName
       console.log('cek for loops', k)
-    }
+    } */
 
     //console.log("landing inkjsdkjhskdjhka", this.state.data);
-    //console.log('landing firebase goal keys=', this.state.goalsDataArray.keys)
+    //console.log('landing firebase goal keys=', this.state.goalsDataArray)
     //console.log('landing firebase goal data array=', this.state.goalsDataArray[0])
+    console.log("landing cek ref", ref.on);
 
     return (
       <View style={{ flex: 1 }}>

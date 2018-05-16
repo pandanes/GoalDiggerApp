@@ -23,10 +23,11 @@ const mapDispatchToProps = dispatch  => ({
 //SAVE TO ASYNC STORAGE
 handleAddGoal = (day, goalName, goalBrief, immediateRewards, completedRewards) => {
 	const data = {day, goalName, goalBrief, immediateRewards, completedRewards}
-	console.log('goal data:', data)
+	//console.log('goal data:', data)
   AsyncStorage.setItem('data', JSON.stringify(data))
   //Save to firebase
   ref.push(data)
+  //console.log('land ref push data', ref.push(data))
 }
 
 handleDays = (field, value) => changeDays(field, value)

@@ -49,6 +49,7 @@ export default class SignIn extends Component {
           <TextInput
           style = {styles.rewardsTextInput}
           placeholder = 'Password'
+          secureTextEntry={true}
           placeholderTextColor = 'rgba(196,196,196,1)'
           underlineColorAndroid = 'transparent'
           onChangeText = {text => this.handlePassword(text)}
@@ -58,6 +59,7 @@ export default class SignIn extends Component {
         <TouchableOpacity
         disabled={!enabled}
         style = {[styles.buttonSignIn, valid ? {backgroundColor:'rgba(44,110,183,1)'} : {backgroundColor:'rgba(196,196,196,0.5)'}]}
+        onPress={() => this.props.navigation.navigate('bottomNav')}
         >
           <Text style = {[styles.buttonSignInText, valid ? {color:'#FFFFFF'} : {color:'rgba(255,255,255,0.3)'}]}>SIGN IN</Text>
         </TouchableOpacity>

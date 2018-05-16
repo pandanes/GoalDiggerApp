@@ -108,44 +108,13 @@ class Home extends Component {
       .catch(err => console.log("landing here error"));
   }
 
-
-
   getData() { 
     const goalsData = firebase.database().ref('goals');
-    console.log('apakah aku goals data', goalsData)
-    console.log('am i triggered')
-
-    goalsData.on('value', function(snapshot) {
-      console.log('am i snapshot??', snapshot.val());
-  });
-
-    goalsData.on("value", function(snapshot) {
-      let snap = snapshot.val();
-      let key = Object.keys(snap)[0]
-      console.log('tolong plissss', snap[key].goalName);
-    }, function (error) {
-      console.log("Errorku apa ya: " + error.code)})
-
-    goalsData.on("value", function(snapshot) {
-      console.log('apa aku adalah snapshot val', snapshot.val()); //tidaaaaaaak!!!!!
-   }, function (error) {
-      console.log("Errorku apa ya: " + error.code);
-   });
+    //console.log('apakah aku goals data', goalsData)
+    //console.log('am i triggered')
 
    //Use this one
     goalsData.on('value', (snapshot) => {
-      console.log('apakah aku val', snapshot.val())
-      console.log('am i triggered again????')
-
-      /* const goalsDataArr= snapshot.val()
-      const keys = Object.keys(goalsDataArr)
-      //console.log('apakah aku key', keys)
-      for (const i=0; i<keys.length; i++){
-        const k = keys[i]
-        const index = goalsDataArr[k].goalName
-        //console.log('cek for loops', i)
-      } */
-
       const items = [];
       snapshot.forEach((child) => {
         items.push({
@@ -310,7 +279,9 @@ class Home extends Component {
               >
               <TouchableOpacity
                 style={styles.goalCard}
-                onPress={() => this.props.onPress(this.state.goalsDataArray)}
+                onPress={() => this.props.onPress(this.state.goalsDataArray)
+                // onPress = {key => this.handleDetail(key)}
+                }
               >
                 <View style={styles.goalDetailWrapper}>
                   <Text style={styles.goalTitleText}>{item.goalName}</Text>

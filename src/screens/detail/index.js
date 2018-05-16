@@ -11,10 +11,13 @@ export default class Detail extends Component {
     for (const i=0; i<keys.length; i++){
       const k = keys[i]
       const index = data.state.params[k].goalName
-      //console.log('cek for loops', index)
+      console.log('cek for loops goal name:', index)
+      console.log('cek for loops k:', k)
     }
     
-    //console.log('landing here check props goal name:', data.state.params[0].goalName)
+    //console.log('landing here check GOALS ARRAY:', data.state.params)
+    //console.log('landing here check GOAL NAME:', data.state.params[0].goalName)
+
 		return (
 			<View style = {{flex:1}}>
 				<View style = {styles.headerNav}>

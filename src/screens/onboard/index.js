@@ -41,7 +41,7 @@ export class Onboard2 extends Component {
             LOG DAILY
           </Text>
           <Text style = {styles.onboardCaption}>
-            Weekly basis tracker makes it easier to stick to your habits regularly.
+            Never forget a task, we remind you daily.
           </Text>
         </View>
         <View style = {styles.onboardPagerContainer} >
@@ -56,7 +56,7 @@ export class Onboard2 extends Component {
 
 class Onboard3 extends Component {
   render() {
-    
+
     return (
       <View style = {styles.container}>
         <View style = {styles.onboardImageContainer}>

@@ -30,7 +30,7 @@ export default class Splash extends Component {
   render() {
     return (
       <View>
-      <Text>7</Text>
+      <Text></Text>
       </View>
     );
   }

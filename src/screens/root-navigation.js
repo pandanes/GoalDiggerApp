@@ -55,7 +55,8 @@ const AppNavigator = StackNavigator({
       },
     },
 },
-  {initialRouteName: 'onboard'}
+  {initialRouteName: 'bottomNav'}
+  //{initialRouteName: 'splash'}
 )
 
 export default AppNavigator
